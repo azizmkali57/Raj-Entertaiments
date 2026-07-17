@@ -40,8 +40,6 @@ export default function Testimonials() {
             What Our Client Says
           </h2>
 
-          {/* Faded gradient divider with a center diamond accent —
-              matches the thin section dividers used across the reference site. */}
           <div className="mx-auto mt-5 flex w-40 items-center justify-center gap-3">
             <span className="h-px flex-1 bg-gradient-to-r from-transparent to-crimson" />
             <span className="h-1.5 w-1.5 rotate-45 bg-crimson" />

@@ -25,7 +25,6 @@ const config = {
 
     extend: {
       colors: {
-        // Existing Colors
         ink: {
           DEFAULT: "#0a0908",
           soft: "#121110",
@@ -46,7 +45,6 @@ const config = {
           glow: "rgba(192, 52, 45, 0.35)",
         },
 
-        // New Luxury Theme Colors
         bg: "#050505",
         surface: "#0D0D0D",
         card: "#111111",
@@ -57,11 +55,9 @@ const config = {
       },
 
       fontFamily: {
-        // Existing Fonts
         display: ["var(--font-playfair)", "Georgia", "serif"],
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
 
-        // New Serif Font
         serif: ["var(--font-serif)", "Georgia", "serif"],
       },
 

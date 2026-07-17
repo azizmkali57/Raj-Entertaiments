@@ -51,8 +51,6 @@ export default function Services() {
             Our Services
           </h2>
 
-          {/* Faded gradient divider with a center diamond accent —
-              matches the thin section dividers used across the reference site. */}
           <div className="mx-auto mt-5 flex w-40 items-center justify-center gap-3">
             <span className="h-px flex-1 bg-gradient-to-r from-transparent to-crimson" />
             <span className="h-1.5 w-1.5 rotate-45 bg-crimson" />
@@ -76,7 +74,6 @@ function ServiceCard({ icon, title, description, image }) {
       <span className="glow-ring pointer-events-none absolute -inset-px" />
 
       <div className="card-clip relative flex h-full flex-col overflow-hidden bg-ink">
-        {/* Photo */}
         <div className="relative h-48 w-full overflow-hidden bg-ink-raised">
           <img
             src={image}
@@ -86,7 +83,6 @@ function ServiceCard({ icon, title, description, image }) {
           <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/5 to-transparent" />
         </div>
 
-        {/* Body */}
         <div className="flex flex-1 flex-col gap-3 p-6">
           <div className="-mt-10 h-8 w-8 text-crimson">
             <ServiceIcon name={icon} />
@@ -107,8 +103,6 @@ function ServiceCard({ icon, title, description, image }) {
           </span>
         </div>
 
-        {/* Corner accent flourishes — small diagonal marks that sit right
-            on the clipped corners to echo the cut, like in the reference. */}
         <span className="corner-accent corner-accent--tl" />
         <span className="corner-accent corner-accent--br" />
       </div>

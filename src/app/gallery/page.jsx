@@ -7,10 +7,6 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
-/* ------------------------------------------------------------------ */
-/*  DATA                                                               */
-/* ------------------------------------------------------------------ */
-
 const categories = [
   "All Events",
   "Weddings",
@@ -32,12 +28,7 @@ const galleryItems = [
   { id: 9, title: "Birthday Celebration", subtitle: "Milestones made memorable", category: "Social Events", image: "/services/event-management.png" },
   { id: 10, title: "Fashion Show", subtitle: "Style takes the stage", category: "Social Events", image: "/services/corporte-event.png" },
   { id: 11, title: "Private Event", subtitle: "Exclusive, by invitation", category: "Social Events", image: "/services/social-events.png" },
-//   { id: 12, title: "Social Gathering", subtitle: "Connection, refined", category: "Social Events", image: "/services/entertainment.png" },
 ];
-
-/* ------------------------------------------------------------------ */
-/*  HERO                                                                */
-/* ------------------------------------------------------------------ */
 
 function Hero() {
   return (
@@ -96,10 +87,6 @@ function Hero() {
   );
 }
 
-/* ------------------------------------------------------------------ */
-/*  CATEGORY TABS                                                      */
-/* ------------------------------------------------------------------ */
-
 function Tabs({ active, setActive }) {
   return (
     <div className="flex flex-wrap items-center justify-center gap-3 px-4 sm:gap-4">
@@ -129,10 +116,6 @@ function Tabs({ active, setActive }) {
     </div>
   );
 }
-
-/* ------------------------------------------------------------------ */
-/*  GALLERY CARD — fills whatever wrapper/aspect box it's placed in    */
-/* ------------------------------------------------------------------ */
 
 function Card({ item, index }) {
   return (
@@ -184,9 +167,6 @@ function Card({ item, index }) {
   );
 }
 
-/* ------------------------------------------------------------------ */
-/*  BENTO GRID — single grid, explicit placement, matches wireframe    */
-/* ------------------------------------------------------------------ */
 function BentoGroup({ items, groupIndex }) {
   if (items.length < 11) {
     return (
@@ -199,20 +179,19 @@ function BentoGroup({ items, groupIndex }) {
       </div>
     );
   }
-
-  // placement only applies at lg+; below that, cards flow naturally in DOM order
+  
   const placements = [
-    "lg:col-start-1 lg:row-start-1",                    // top-left
-    "lg:col-start-2 lg:row-start-1",                    // top-center
-    "lg:col-start-3 lg:row-start-1",                    // top-right
-    "lg:col-start-1 lg:row-start-2",                    // mid-left upper
-    "lg:col-start-2 lg:row-start-2 lg:row-span-2",      // mid-center TALL
-    "lg:col-start-3 lg:row-start-2",                    // mid-right upper
-    "lg:col-start-1 lg:row-start-3",                    // mid-left lower
-    "lg:col-start-3 lg:row-start-3",                    // mid-right lower
-    "lg:col-start-1 lg:row-start-4",                    // bottom-left
-    "lg:col-start-2 lg:row-start-4",                    // bottom-center
-    "lg:col-start-3 lg:row-start-4",                    // bottom-right
+    "lg:col-start-1 lg:row-start-1",                   
+    "lg:col-start-2 lg:row-start-1",                   
+    "lg:col-start-3 lg:row-start-1",                   
+    "lg:col-start-1 lg:row-start-2",                    
+    "lg:col-start-2 lg:row-start-2 lg:row-span-2",    
+    "lg:col-start-3 lg:row-start-2",                    
+    "lg:col-start-1 lg:row-start-3",                   
+    "lg:col-start-3 lg:row-start-3",                    
+    "lg:col-start-1 lg:row-start-4",                  
+    "lg:col-start-2 lg:row-start-4",                   
+    "lg:col-start-3 lg:row-start-4",               
   ];
 
   return (
@@ -228,10 +207,6 @@ function BentoGroup({ items, groupIndex }) {
     </div>
   );
 }
-
-/* ------------------------------------------------------------------ */
-/*  GALLERY GRID (tabs + bento-grouped filtered cards)                 */
-/* ------------------------------------------------------------------ */
 
 function GridSection() {
   const [active, setActive] = useState("All Events");
@@ -273,10 +248,6 @@ function GridSection() {
   );
 }
 
-/* ------------------------------------------------------------------ */
-/*  CTA SECTION                                                        */
-/* ------------------------------------------------------------------ */
-
 function CTA() {
   return (
     <section className="relative overflow-hidden bg-black py-24">
@@ -290,13 +261,6 @@ function CTA() {
             viewport={{ once: true }}
             transition={{ duration: 1.5 }}
           >
-            {/* <defs>
-              <linearGradient id="ctaRibbon" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stopColor="#B71C1C" stopOpacity="0" />
-                <stop offset="50%" stopColor="#E53935" stopOpacity="0.6" />
-                <stop offset="100%" stopColor="#B71C1C" stopOpacity="0" />
-              </linearGradient>
-            </defs> */}
             <motion.path
               d="M 620 40 C 460 120, 520 220, 360 260 C 220 296, 180 340, 40 400"
               stroke="url(#ctaRibbon)"
@@ -338,10 +302,6 @@ function CTA() {
     </section>
   );
 }
-
-/* ------------------------------------------------------------------ */
-/*  PAGE EXPORT                                                        */
-/* ------------------------------------------------------------------ */
 
 export default function GallerySection() {
   return (

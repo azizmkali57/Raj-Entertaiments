@@ -42,7 +42,6 @@ export default function Hero() {
         <div className="absolute inset-0 bg-vignette lg:opacity-60" />
       </div>
 
-      {/* Faint watermark filling the empty lower-left of the dark panel */}
       <span
         aria-hidden="true"
         className="pointer-events-none absolute -bottom-10 -left-6 z-0 hidden select-none font-display text-[13rem] font-bold uppercase leading-none text-bone/[0.04] lg:block"
@@ -50,7 +49,6 @@ export default function Hero() {
         Raj
       </span>
 
-      {/* Content */}
       <div className="container relative z-10 pt-32 lg:pt-8">
         <div className="max-w-xl animate-fade-up lg:max-w-md">
           <div className="mb-4 flex items-center gap-3">
@@ -88,7 +86,6 @@ export default function Hero() {
             </Link>
           </div>
 
-          {/* Watch Showreel — fills the remaining space, gives the eye a third stop */}
           <button
             type="button"
             className="group mt-10 flex items-center gap-3 text-bone/70 transition-colors duration-300 hover:text-bone"

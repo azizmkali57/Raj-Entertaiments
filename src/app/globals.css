@@ -20,7 +20,6 @@
     @apply bg-crimson text-bone;
   }
 
-  /* thin, dark scrollbar to match the stage aesthetic */
   ::-webkit-scrollbar {
     width: 10px;
   }
@@ -37,7 +36,6 @@
 }
 
 @layer components {
-  /* shared eyebrow label style used across sections */
   .eyebrow {
     @apply text-xs font-medium uppercase tracking-widest2 text-crimson;
   }

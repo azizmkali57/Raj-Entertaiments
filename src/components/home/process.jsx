@@ -40,7 +40,6 @@ export default function Process() {
     <section id="process" className="py-24 sm:py-32">
       <div className="container">
         <div className="relative grid overflow-hidden border border-white/[0.08] lg:grid-cols-[1.65fr_1fr]">
-          {/* Single shared background image covering the entire box */}
           <Image
             src="/our-process.png"
             alt=""
@@ -48,23 +47,19 @@ export default function Process() {
             sizes="100vw"
             className="pointer-events-none absolute inset-0 -z-30 object-cover"
           />
-          {/* Flat black overlay to mute/darken the image */}
           <div
             aria-hidden="true"
             className="pointer-events-none absolute inset-0 -z-20 bg-black/80"
           />
-          {/* Gradient overlay for extra depth top/bottom */}
           <div
             aria-hidden="true"
             className="pointer-events-none absolute inset-0 -z-20 bg-gradient-to-b from-black/90 via-black/60 to-black/90"
           />
-          {/* Subtle vignette */}
           <div
             aria-hidden="true"
             className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,transparent_35%,rgba(0,0,0,0.65)_100%)]"
           />
 
-          {/* ---------------- Left side: heading + steps ---------------- */}
           <div className="relative px-6 py-16 sm:px-12 sm:py-20">
             <div className="relative mx-auto max-w-xl text-center">
               <p className="mb-3 text-xs font-semibold uppercase tracking-[0.35em] text-crimson">
@@ -74,7 +69,6 @@ export default function Process() {
                 From Concept To Celebration
               </h2>
 
-              {/* Divider: transparent line — diamond — transparent line */}
               <div className="mx-auto mt-5 flex w-28 items-center justify-center gap-3">
                 <span className="h-px flex-1 bg-gradient-to-r from-transparent to-crimson" />
                 <span className="h-1.5 w-1.5 rotate-45 bg-crimson" />
@@ -104,15 +98,12 @@ export default function Process() {
             </div>
           </div>
 
-          {/* ---------------- Right panel: decorative CTA ---------------- */}
           <div className="relative flex min-h-[240px] flex-col justify-end overflow-hidden border-t border-white/[0.08] p-10 lg:min-h-0 lg:border-l lg:border-t-0">
-            {/* Extra darkening on top of the shared background image */}
             <div
               aria-hidden="true"
               className="pointer-events-none absolute inset-0 -z-20 bg-black/70"
             />
 
-            {/* Red silk / fabric accent glow in the top-right corner */}
             <div
               aria-hidden="true"
               className="pointer-events-none absolute -right-20 -top-16 h-80 w-80 rounded-full bg-gradient-to-br from-crimson/40 via-crimson-deep/30 to-transparent blur-3xl"

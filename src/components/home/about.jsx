@@ -7,9 +7,6 @@ const STATS = [
 export default function About() {
   return (
     <section id="about" className="relative overflow-hidden bg-ink py-24 sm:py-32">
-      {/* Fine grain texture — gives the flat dark background the subtle
-          greyish, filmic quality visible in the reference instead of a
-          flat block color. Blend mode keeps it from tinting the section. */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 opacity-[0.05] mix-blend-overlay"
@@ -19,9 +16,6 @@ export default function About() {
           backgroundSize: "220px 220px",
         }}
       />
-
-      {/* Soft radial glow so the center (behind the monogram) isn't pure
-          flat black either — matches the faint ambient light in the ref */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0"
@@ -33,7 +27,6 @@ export default function About() {
 
       <div className="container relative z-10">
         <div className="grid items-center gap-16 lg:grid-cols-[1fr_0.85fr_0.7fr] lg:gap-10">
-          {/* Left column — copy */}
           <div className="max-w-lg">
             <p className="eyebrow mb-5">About Raj Entertainments</p>
 
@@ -57,12 +50,10 @@ export default function About() {
             </a>
           </div>
 
-          {/* Center column — monogram */}
           <div className="flex justify-center">
             <Monogram />
           </div>
 
-          {/* Right column — stats */}
           <div className="flex flex-col divide-y divide-ink-line">
             {STATS.map((stat) => (
               <div key={stat.label} className="flex items-center gap-4 py-6 first:pt-0 last:pb-0">
@@ -89,7 +80,6 @@ export default function About() {
 function Monogram() {
   return (
     <div className="relative flex h-[420px] w-[420px] items-center justify-center sm:h-[480px] sm:w-[480px] lg:h-[520px] lg:w-[520px]">
-      {/* Slowly rotating badge text */}
       <svg
         viewBox="0 0 300 300"
         className="absolute inset-0 h-full w-full animate-[spin_22s_linear_infinite] text-bone-muted"
@@ -107,11 +97,8 @@ function Monogram() {
         </text>
       </svg>
 
-      {/* Small accent mark */}
       <span className="absolute bottom-8 right-12 h-2 w-2 rotate-45 bg-crimson" />
 
-      {/* Soft dark silhouette sitting behind the main letter — adds mass
-          and a sense of depth so the R doesn't read as a thin flat shape */}
       <span
         aria-hidden="true"
         className="absolute select-none font-display text-[18rem] font-black leading-none text-bone/[0.06] sm:text-[21rem] lg:text-[23rem]"
@@ -119,10 +106,6 @@ function Monogram() {
         R
       </span>
 
-      {/* Oversized letterform — now dominant within its ring instead of
-          floating small in the middle. Bumped size, font-weight, stroke
-          definition, and added a drop shadow so it reads as bold/solid
-          rather than thin and washed out. */}
       <span
         aria-hidden="true"
         className="relative select-none bg-clip-text font-display text-[18rem] font-black leading-none text-transparent sm:text-[21rem] lg:text-[23rem]"

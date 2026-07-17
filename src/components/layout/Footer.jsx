@@ -42,7 +42,6 @@ const CONTACT_ITEMS = [
 export default function Footer() {
   return (
     <footer id="contact" className="relative overflow-hidden">
-      {/* Background texture, generated asset */}
       <Image
         src="/footer.png"
         alt=""
@@ -50,7 +49,6 @@ export default function Footer() {
         sizes="100vw"
         className="pointer-events-none absolute inset-0 -z-10 object-cover"
       />
-      {/* Darkening overlay so the background stays subtle behind the content */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 -z-[5] bg-black/55"
@@ -105,7 +103,6 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Bottom bar */}
       <div className="container relative z-10 flex flex-col items-center gap-6 py-6 text-center lg:flex-row lg:justify-between lg:text-left">
         <nav className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
           {FOOTER_LINKS.map((link) => (

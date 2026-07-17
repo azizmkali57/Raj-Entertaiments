@@ -14,10 +14,6 @@ import { BsInstagram } from "react-icons/bs";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
-/* ------------------------------------------------------------------ */
-/*  Shared data                                                        */
-/* ------------------------------------------------------------------ */
-
 const EVENT_TYPES = [
   "Wedding",
   "Corporate Event",
@@ -72,10 +68,6 @@ const reveal = {
   show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } },
 };
 
-/* ------------------------------------------------------------------ */
-/*  Small shared pieces                                                */
-/* ------------------------------------------------------------------ */
-
 const fieldClasses =
   "peer w-full bg-ink-soft/80 border border-ink-line px-4 pt-5 pb-2 text-sm text-bone placeholder-transparent outline-none transition-all duration-300 focus:border-crimson focus:shadow-[0_0_0_1px_theme(colors.crimson.DEFAULT),0_0_24px_theme(colors.crimson.glow)]";
 
@@ -101,10 +93,6 @@ function Field({ id, label, type = "text", value, onChange, span = false }) {
   );
 }
 
-/* ------------------------------------------------------------------ */
-/*  Contact form                                                       */
-/* ------------------------------------------------------------------ */
-
 function ContactForm() {
   const [data, setData] = useState({
     name: "",
@@ -123,7 +111,6 @@ function ContactForm() {
   async function handleSubmit(e) {
     e.preventDefault();
     setStatus("sending");
-    // Replace with your real submission logic (API route, email service, CRM, etc.)
     await new Promise((res) => setTimeout(res, 1200));
     setStatus("sent");
     setData({
@@ -219,10 +206,6 @@ function ContactForm() {
   );
 }
 
-/* ------------------------------------------------------------------ */
-/*  Hero                                                                */
-/* ------------------------------------------------------------------ */
-
 const PARTICLES = Array.from({ length: 14 }, (_, i) => ({
   id: i,
   left: `${(i * 37) % 100}%`,
@@ -251,7 +234,6 @@ function HeroContact() {
 
   return (
     <section className="relative grid grid-cols-1 lg:grid-cols-2">
-      {/* LEFT — copy + form */}
       <div className="relative z-10 px-6 py-24 sm:px-10 lg:px-16 lg:py-32">
         <motion.p
           initial={{ opacity: 0, y: 16 }}
@@ -300,7 +282,6 @@ function HeroContact() {
         </motion.div>
       </div>
 
-      {/* RIGHT — cinematic image with parallax + particles */}
       <div
         ref={imageRef}
         onMouseMove={handleMouseMove}
@@ -343,10 +324,6 @@ function HeroContact() {
   );
 }
 
-/* ------------------------------------------------------------------ */
-/*  Contact info cards                                                 */
-/* ------------------------------------------------------------------ */
-
 function ContactInfo() {
   return (
     <div>
@@ -388,10 +365,6 @@ function ContactInfo() {
     </div>
   );
 }
-
-/* ------------------------------------------------------------------ */
-/*  FAQ accordion                                                       */
-/* ------------------------------------------------------------------ */
 
 function FAQSection() {
   const [open, setOpen] = useState(0);
@@ -451,10 +424,6 @@ function FAQSection() {
     </div>
   );
 }
-
-/* ------------------------------------------------------------------ */
-/*  Map section                                                        */
-/* ------------------------------------------------------------------ */
 
 function MapSection() {
   return (
@@ -547,10 +516,6 @@ function MapSection() {
   );
 }
 
-/* ------------------------------------------------------------------ */
-/*  Why choose us                                                       */
-/* ------------------------------------------------------------------ */
-
 function Counter({ value, suffix }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-40px" });
@@ -622,10 +587,6 @@ function WhyChooseUs() {
     </section>
   );
 }
-
-/* ------------------------------------------------------------------ */
-/*  Inquiry banner                                                      */
-/* ------------------------------------------------------------------ */
 
 function InquiryBanner() {
   return (
@@ -701,10 +662,6 @@ function InquiryBanner() {
     </section>
   );
 }
-
-/* ------------------------------------------------------------------ */
-/*  Page composition — this is the only export you need                */
-/* ------------------------------------------------------------------ */
 
 export default function ContactPage() {
   return (

@@ -1,11 +1,5 @@
 "use client";
 
-/* =====================================================================
-   RAJ ENTERTAINMENTS — ABOUT PAGE
-   Single-file, plain JSX (no TypeScript). Tailwind CSS + Framer Motion +
-   Lucide React. Drop this between your global <Navbar /> and <Footer />.
-   ===================================================================== */
-
 import { useState, useRef, useEffect } from "react";
 import { motion, useMotionValue, useSpring, useTransform, useInView } from "framer-motion";
 import { ArrowRight, Heart, MapPin, Play, Rocket, Shield, Smile, Sparkles, Star, Target, Trophy, Users } from "lucide-react";
@@ -13,9 +7,6 @@ import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
-/* ---------------------------------------------------------------------
-   THEME TOKENS — every color traces back to this block
-   --------------------------------------------------------------------- */
 const BG = "#090909";
 const BG_SOFT = "#111111";
 const CARD = "#141414";
@@ -29,9 +20,6 @@ const GLOW = "rgba(213,59,59,.35)";
 const NOISE_BG =
   "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")";
 
-/* ---------------------------------------------------------------------
-   STATIC DATA
-   --------------------------------------------------------------------- */
 const FEATURES = [
   { icon: Sparkles, title: "Creative Excellence", desc: "Unique concepts crafted for extraordinary celebrations." },
   { icon: Shield, title: "Flawless Execution", desc: "Perfect planning with precision and elegance." },
@@ -125,9 +113,6 @@ const reveal = {
   show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } },
 };
 
-/* ---------------------------------------------------------------------
-   SHARED PIECES
-   --------------------------------------------------------------------- */
 function Eyebrow({ children, center }) {
   return (
     <p className={`text-xs font-semibold uppercase tracking-[0.3em] ${center ? "text-center" : ""}`} style={{ color: PRIMARY }}>
@@ -199,9 +184,6 @@ function Counter({ value, suffix }) {
   );
 }
 
-/* ---------------------------------------------------------------------
-   SECTION 1 — HERO
-   --------------------------------------------------------------------- */
 function Hero() {
   const imageRef = useRef(null);
   const mx = useMotionValue(0);
@@ -220,7 +202,6 @@ function Hero() {
 
   return (
     <section className="relative flex min-h-screen flex-col lg:flex-row">
-      {/* LEFT — 48% */}
       <div className="relative z-10 flex flex-col justify-center px-6 py-20 sm:px-10 lg:w-[48%] lg:px-16 lg:py-24">
         <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
           <Eyebrow>About Raj Entertainments</Eyebrow>
@@ -307,7 +288,6 @@ function Hero() {
         </div>
       </div>
 
-      {/* RIGHT — 52% cinematic image */}
       <div
         ref={imageRef}
         onMouseMove={handleMouseMove}
@@ -352,9 +332,6 @@ function Hero() {
   );
 }
 
-/* ---------------------------------------------------------------------
-   SECTION 2 — OUR IMPACT
-   --------------------------------------------------------------------- */
 function OurImpact() {
   return (
     <section className="px-6 py-16 sm:px-10">
@@ -404,9 +381,6 @@ function OurImpact() {
   );
 }
 
-/* ---------------------------------------------------------------------
-   SECTION 3 — OUR JOURNEY (TIMELINE)
-   --------------------------------------------------------------------- */
 function OurJourney() {
   return (
     <section className="px-6 py-24 sm:px-10">
@@ -428,7 +402,6 @@ function OurJourney() {
             </p>
           </motion.div>
 
-          {/* timeline */}
           <div className="relative">
             <div className="hidden lg:block">
               <div className="relative grid grid-cols-5 gap-6">
@@ -467,7 +440,6 @@ function OurJourney() {
               </div>
             </div>
 
-            {/* mobile: vertical timeline */}
             <div className="space-y-8 lg:hidden">
               {MILESTONES.map((m, i) => (
                 <motion.div
@@ -505,9 +477,6 @@ function OurJourney() {
   );
 }
 
-/* ---------------------------------------------------------------------
-   SECTION 4 — TEAM
-   --------------------------------------------------------------------- */
 function Team() {
   return (
     <section className="px-6 py-24 sm:px-10" style={{ borderTop: `1px solid ${BORDER}` }}>
@@ -579,9 +548,6 @@ function Team() {
   );
 }
 
-/* ---------------------------------------------------------------------
-   SECTION 5 — OUR PASSION
-   --------------------------------------------------------------------- */
 function OurPassion() {
   return (
     <section className="px-6 py-16 sm:px-10">
@@ -685,9 +651,6 @@ function OurPassion() {
   );
 }
 
-/* ---------------------------------------------------------------------
-   PAGE COMPOSITION — the only export you need
-   --------------------------------------------------------------------- */
 export default function AboutPage() {
   return (
     <main className="relative overflow-hidden" style={{ background: BG }}>
