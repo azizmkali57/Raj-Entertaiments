@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-ink-line;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  body {
+    @apply bg-ink text-bone font-sans antialiased;
+  }
+
+  ::selection {
+    @apply bg-crimson text-bone;
+  }
+
+  /* thin, dark scrollbar to match the stage aesthetic */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-ink;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-ink-raised;
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-crimson-deep;
+  }
+}
+
+@layer components {
+  /* shared eyebrow label style used across sections */
+  .eyebrow {
+    @apply text-xs font-medium uppercase tracking-widest2 text-crimson;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-3 bg-crimson px-8 py-4 text-xs font-semibold uppercase tracking-widest2 text-bone transition-colors duration-300 hover:bg-crimson-bright;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center gap-3 border-b border-bone/40 pb-1 text-xs font-semibold uppercase tracking-widest2 text-bone transition-colors duration-300 hover:border-crimson hover:text-crimson;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
