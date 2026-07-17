@@ -26,7 +26,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer"
+import Footer from "@/components/layout/Footer";
 
 /* ================================================================== */
 /*  SHARED ANIMATION VARIANTS — reused by every section below          */
@@ -126,7 +126,8 @@ function SectionHeading({
           viewport={viewport}
           className="font-display text-4xl leading-[1.1] text-bone sm:text-5xl lg:text-6xl"
         >
-          {title} {highlight && <span className="text-crimson">{highlight}</span>}
+          {title}{" "}
+          {highlight && <span className="text-crimson">{highlight}</span>}
         </motion.h2>
       )}
       {description && (
@@ -145,7 +146,13 @@ function SectionHeading({
   );
 }
 
-function AnimatedButton({ children, onClick, href, variant = "primary", className = "" }) {
+function AnimatedButton({
+  children,
+  onClick,
+  href,
+  variant = "primary",
+  className = "",
+}) {
   const ref = useRef(null);
   const [pos, setPos] = useState({ x: 0, y: 0 });
 
@@ -180,7 +187,10 @@ function AnimatedButton({ children, onClick, href, variant = "primary", classNam
           <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
         )}
         <span className="relative">{children}</span>
-        <ArrowRight size={15} className="relative transition-transform duration-500 group-hover:translate-x-1" />
+        <ArrowRight
+          size={15}
+          className="relative transition-transform duration-500 group-hover:translate-x-1"
+        />
       </Comp>
     </motion.div>
   );
@@ -214,14 +224,12 @@ function StatCounter({ value, suffix = "", label, delay = 0 }) {
         {display}
         {suffix}
       </div>
-      <div className="mt-1 text-[11px] uppercase tracking-widest2 text-bone-muted">{label}</div>
+      <div className="mt-1 text-[11px] uppercase tracking-widest2 text-bone-muted">
+        {label}
+      </div>
     </motion.div>
   );
 }
-
-/* ================================================================== */
-/*  SECTION 1 — HERO                                                    */
-/* ================================================================== */
 
 const HERO_STATS = [
   { icon: Users, value: 500, suffix: "+", label: "Events" },
@@ -258,9 +266,17 @@ function Hero() {
       onMouseMove={handleMouseMove}
       className="relative flex min-h-screen items-center overflow-hidden bg-ink"
     >
-      <motion.div style={{ scale: bgScale, opacity: bgOpacity, x: parallaxX, y: parallaxY }} className="absolute inset-0">
+      <motion.div
+        style={{
+          scale: bgScale,
+          opacity: bgOpacity,
+          x: parallaxX,
+          y: parallaxY,
+        }}
+        className="absolute inset-0"
+      >
         <Image
-          src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2400&auto=format&fit=crop"
+          src="/services/hero.png"
           alt="Luxury event stage"
           fill
           priority
@@ -276,7 +292,13 @@ function Hero() {
       <motion.div style={{ y: contentY }} className="container relative z-10">
         <div className="grid items-end gap-16 lg:grid-cols-[1.3fr_0.7fr]">
           <div className="max-w-xl">
-            <motion.span custom={0} variants={fadeUp} initial="hidden" animate="visible" className="eyebrow mb-6 block">
+            <motion.span
+              custom={0}
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              className="eyebrow mb-6 block"
+            >
               Our Services
             </motion.span>
 
@@ -301,20 +323,33 @@ function Hero() {
               animate="visible"
               className="mt-7 max-w-md text-sm leading-relaxed text-bone-muted sm:text-base"
             >
-              From intimate gatherings to grand productions, we transform every event into unforgettable memories.
+              From intimate gatherings to grand productions, we transform every
+              event into unforgettable memories.
             </motion.p>
 
-            <motion.div custom={3} variants={fadeUp} initial="hidden" animate="visible" className="mt-10 flex items-center gap-8">
+            <motion.div
+              custom={3}
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              className="mt-10 flex items-center gap-8"
+            >
               <AnimatedButton variant="primary">Plan Your Event</AnimatedButton>
               <div className="hidden items-center gap-3 sm:flex">
                 <motion.span
                   animate={{ y: [0, 8, 0] }}
-                  transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+                  transition={{
+                    duration: 1.8,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
                   className="flex h-9 w-6 items-start justify-center rounded-full border border-bone/30 p-1.5"
                 >
                   <span className="h-1.5 w-1.5 rounded-full bg-crimson" />
                 </motion.span>
-                <span className="text-[11px] uppercase tracking-widest2 text-bone-muted">Scroll to Explore</span>
+                <span className="text-[11px] uppercase tracking-widest2 text-bone-muted">
+                  Scroll to Explore
+                </span>
               </div>
             </motion.div>
           </div>
@@ -327,11 +362,19 @@ function Hero() {
             className="flex flex-col gap-6 border-l border-bone/10 pl-8 lg:items-end lg:text-right"
           >
             {HERO_STATS.map((stat, i) => (
-              <div key={stat.label} className="flex items-center gap-4 lg:flex-row-reverse">
+              <div
+                key={stat.label}
+                className="flex items-center gap-4 lg:flex-row-reverse"
+              >
                 <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-crimson/40 text-crimson">
                   <stat.icon size={18} />
                 </div>
-                <StatCounter value={stat.value} suffix={stat.suffix} label={stat.label} delay={0.3 + i * 0.15} />
+                <StatCounter
+                  value={stat.value}
+                  suffix={stat.suffix}
+                  label={stat.label}
+                  delay={0.3 + i * 0.15}
+                />
               </div>
             ))}
           </motion.div>
@@ -341,15 +384,6 @@ function Hero() {
   );
 }
 
-/* ================================================================== */
-/*  SECTIONS 2 & 3 — WEDDINGS / CORPORATE EVENTS (split layout)         */
-/* ================================================================== */
-
-/**
- * SplitService
- * Shared layout for "Weddings" and "Corporate Events" — mirrors itself
- * via the `reverse` prop so the image/text sides swap sides.
- */
 function SplitService({
   number,
   eyebrow,
@@ -361,91 +395,120 @@ function SplitService({
   reverse = false,
 }) {
   return (
-    <section className="relative overflow-hidden bg-ink py-16 sm:py-20 lg:py-[120px]">
-      {/* huge transparent background number */}
-      <span
-        aria-hidden
-        className={`pointer-events-none absolute top-1/2 -translate-y-1/2 select-none font-display text-[220px] leading-none text-bone/[0.03] sm:text-[320px] lg:text-[420px] ${
-          reverse ? "right-0 translate-x-1/4" : "left-0 -translate-x-1/4"
-        }`}
+    <section className="relative overflow-hidden bg-ink">
+      {/* FULL-BLEED BACKGROUND IMAGE */}
+      <motion.div
+        variants={fadeIn}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewport}
+        className="absolute inset-0"
       >
-        {number}
-      </span>
+        <Image
+          src={image}
+          alt={title}
+          fill
+          sizes="100vw"
+          className="object-cover"
+          style={{ objectPosition: reverse ? "80% center" : "20% center" }}
+        />
 
-      <div className="container relative z-10">
+        {/* single continuous horizontal fade — no hard stops, no second layer */}
         <div
-          className={`grid items-center gap-12 lg:grid-cols-2 lg:gap-20 ${
-            reverse ? "lg:[&>*:first-child]:order-2" : ""
-          }`}
-        >
-          {/* IMAGE */}
-          <motion.div
-            variants={maskReveal}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewport}
-            className="relative aspect-[4/5] w-full overflow-hidden rounded-sm sm:aspect-[16/11] lg:aspect-[4/5]"
-          >
-            <Image
-              src={image}
-              alt={title}
-              fill
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink/50 via-transparent to-transparent" />
-          </motion.div>
+          className="absolute inset-0"
+          style={{
+            background: reverse
+              ? "linear-gradient(to left, transparent 0%, transparent 30%, rgba(10,9,8,0.55) 48%, rgba(10,9,8,0.92) 62%, #0a0908 78%)"
+              : "linear-gradient(to right, transparent 0%, transparent 30%, rgba(10,9,8,0.55) 48%, rgba(10,9,8,0.92) 62%, #0a0908 78%)",
+          }}
+        />
+        {/* gentle overall darkening so the image side isn't too bright either */}
+        <div className="absolute inset-0 bg-ink/20" />
+        {/* subtle top/bottom vignette for depth */}
+        <div className="absolute inset-0 bg-gradient-to-b from-ink/30 via-transparent to-ink/40" />
+      </motion.div>
 
-          {/* TEXT */}
-          <div>
-            <motion.span custom={0} variants={fadeUp} initial="hidden" whileInView="visible" viewport={viewport} className="eyebrow mb-4 block">
-              {eyebrow}
-            </motion.span>
+      {/* CONTENT */}
+      <div className="container relative z-10">
+        <div className="grid min-h-[560px] grid-cols-1 items-center py-16 lg:grid-cols-2 lg:py-0">
+          <div
+            aria-hidden
+            className={`hidden lg:block ${reverse ? "lg:order-2" : "lg:order-1"}`}
+          />
 
-            <motion.h2
-              custom={1}
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={viewport}
-              className="font-display text-4xl leading-[1.1] text-bone sm:text-5xl lg:text-6xl"
+          <div className={`relative ${reverse ? "lg:order-1" : "lg:order-2"}`}>
+            {/* ghost number */}
+            <span
+              aria-hidden
+              className="pointer-events-none absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/3 select-none font-display text-[220px] leading-none text-bone/[0.06] sm:text-[280px] lg:text-[340px]"
             >
-              {title}
-            </motion.h2>
+              {number}
+            </span>
 
-            <motion.p
-              custom={2}
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={viewport}
-              className="mt-5 max-w-md text-sm leading-relaxed text-bone-muted sm:text-base"
-            >
-              {description}
-            </motion.p>
+            <div className="relative z-10 py-10 lg:py-16">
+              <motion.span
+                custom={0}
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={viewport}
+                className="eyebrow mb-4 block"
+              >
+                {eyebrow}
+              </motion.span>
 
-            <motion.ul
-              variants={staggerContainer(0.08, 0.3)}
-              initial="hidden"
-              whileInView="visible"
-              viewport={viewport}
-              className="mt-8 grid grid-cols-2 gap-x-6 gap-y-3 sm:max-w-md"
-            >
-              {items.map((item) => (
-                <motion.li
-                  key={item}
-                  variants={fadeUp}
-                  className="flex items-center gap-2.5 text-sm text-bone-muted"
-                >
-                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-crimson" />
-                  {item}
-                </motion.li>
-              ))}
-            </motion.ul>
+              <motion.h2
+                custom={1}
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={viewport}
+                className="font-display text-4xl leading-[1.1] text-bone sm:text-5xl lg:text-6xl"
+              >
+                {title}
+              </motion.h2>
 
-            <motion.div custom={4} variants={fadeUp} initial="hidden" whileInView="visible" viewport={viewport} className="mt-10">
-              <AnimatedButton variant="outline">{ctaLabel}</AnimatedButton>
-            </motion.div>
+              <motion.p
+                custom={2}
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={viewport}
+                className="mt-5 max-w-md text-sm leading-relaxed text-bone-muted sm:text-base"
+              >
+                {description}
+              </motion.p>
+
+              <motion.ul
+                variants={staggerContainer(0.08, 0.3)}
+                initial="hidden"
+                whileInView="visible"
+                viewport={viewport}
+                className="mt-8 flex flex-col gap-3 sm:max-w-md"
+              >
+                {items.map((item) => (
+                  <motion.li
+                    key={item}
+                    variants={fadeUp}
+                    className="flex items-center gap-2.5 text-sm text-bone-muted"
+                  >
+                    <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-crimson" />
+                    {item}
+                  </motion.li>
+                ))}
+              </motion.ul>
+
+              <motion.div
+                custom={4}
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={viewport}
+                className="mt-10"
+              >
+                <AnimatedButton variant="outline">{ctaLabel}</AnimatedButton>
+              </motion.div>
+            </div>
           </div>
         </div>
       </div>
@@ -470,7 +533,7 @@ function WeddingSection() {
         "Sangeet",
       ]}
       ctaLabel="View Gallery"
-      image="https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=1800&auto=format&fit=crop"
+      image="/services/wedding-section.png"
     />
   );
 }
@@ -491,49 +554,56 @@ function CorporateSection() {
         "Dealer Meets",
       ]}
       ctaLabel="Enquire Now"
-      image="https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=1800&auto=format&fit=crop"
+      image="/services/live-events.png"
       reverse
     />
   );
 }
-
-/* ================================================================== */
-/*  SECTION 4 — LIVE SHOWS                                              */
-/* ================================================================== */
 
 const LIVE_SHOW_SERVICES = [
   { icon: Lightbulb, label: "Lighting" },
   { icon: MonitorPlay, label: "LED" },
   { icon: Volume2, label: "Sound" },
   { icon: Layers, label: "Stage" },
-  { icon: Users, label: "Artist Management" },
+  // { icon: Users, label: "Artist Management" },
   { icon: Camera, label: "Photography" },
 ];
 
 const LIVE_SHOW_IMAGES = [
-  { src: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?q=80&w=1400&auto=format&fit=crop", title: "Concert Nights" },
-  { src: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?q=80&w=1400&auto=format&fit=crop", title: "Stage Production" },
-  { src: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=1400&auto=format&fit=crop", title: "Celebrity Performances" },
-  { src: "https://images.unsplash.com/photo-1493676304819-0d7a8d026dcf?q=80&w=1400&auto=format&fit=crop", title: "Live Bands" },
-  { src: "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?q=80&w=1400&auto=format&fit=crop", title: "Award Ceremonies" },
+  {
+    src: "/services/corporte-event.png",
+    title: "Concert Nights",
+  },
+  {
+    src: "/services/entertainment.png",
+    title: "Stage Production",
+  },
+  {
+    src: "/services/event-management.png",
+    title: "Celebrity Performances",
+  },
+  {
+    src: "/services/social-events.png",
+    title: "Live Bands",
+  },
+  {
+    src: "/services/wedding.png",
+    title: "Award Ceremonies",
+  },
 ];
 
 function LiveShows() {
   const trackRef = useRef(null);
   const [isPaused, setIsPaused] = useState(false);
 
-  // auto-scroll loop
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
-
     let frame;
-    const speed = 0.6; // px per tick
-
+    const speed = 0.6;
     const step = () => {
       if (!isPaused && track) {
         track.scrollLeft += speed;
-        // loop back to start seamlessly once we pass the first set's width
         if (track.scrollLeft >= track.scrollWidth / 2) {
           track.scrollLeft = 0;
         }
@@ -550,25 +620,30 @@ function LiveShows() {
     track.scrollBy({ left: dir * 420, behavior: "smooth" });
   };
 
-  // duplicate the list so the auto-scroll loop feels seamless
   const loopedImages = [...LIVE_SHOW_IMAGES, ...LIVE_SHOW_IMAGES];
 
   return (
-    <section className="relative overflow-hidden bg-ink-soft py-16 sm:py-20 lg:py-[120px]">
-      {/* ambient background image, heavily darkened */}
-      <div className="absolute inset-0 opacity-25">
+    <section className="relative overflow-hidden py-10 sm:py-20 lg:py-10">
+      {/* ambient background, very subtle */}
+      <div className="absolute inset-0 opacity-10">
         <Image
-          src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=2000&auto=format&fit=crop"
+          src="/contact/conatct-hero.jpeg"
           alt=""
           fill
           sizes="100vw"
           className="object-cover"
         />
       </div>
-      <div className="absolute inset-0 bg-gradient-to-b from-ink-soft via-ink-soft/90 to-ink-soft" />
+      <div className="absolute inset-0 bg-ink/40" />
 
       <div className="container relative z-10">
-        <SectionHeading eyebrow="Live" title="Live" highlight="Shows" description="From concerts to celebrity nights." align="center" />
+        <SectionHeading
+          eyebrow="Live"
+          title="Live"
+          highlight="Shows"
+          description="From concerts to celebrity nights."
+          align="center"
+        />
 
         {/* horizontal service icons */}
         <motion.div
@@ -576,7 +651,7 @@ function LiveShows() {
           initial="hidden"
           whileInView="visible"
           viewport={viewport}
-          className="mt-14 flex flex-wrap items-center justify-center gap-x-10 gap-y-6 sm:gap-x-14"
+          className="mt-5 flex flex-wrap items-center justify-center gap-x-10 gap-y-6 sm:gap-x-14"
         >
           {LIVE_SHOW_SERVICES.map((svc) => (
             <motion.div
@@ -585,8 +660,8 @@ function LiveShows() {
               whileHover={{ y: -4 }}
               className="group flex flex-col items-center gap-3 text-center"
             >
-              <div className="flex h-12 w-12 items-center justify-center rounded-full border border-bone/15 text-bone-muted transition-all duration-300 group-hover:border-crimson group-hover:text-crimson group-hover:shadow-[0_0_20px_-4px_rgba(192,52,45,0.6)]">
-                <svc.icon size={18} />
+              <div className="flex h-12 w-12 items-center justify-center rounded-md text-crimson transition-all duration-300 group-hover:bg-crimson group-hover:text-bone">
+                <svc.icon size={30} />
               </div>
               <span className="text-[11px] uppercase tracking-widest2 text-bone-muted transition-colors duration-300 group-hover:text-bone">
                 {svc.label}
@@ -602,28 +677,27 @@ function LiveShows() {
           initial="hidden"
           whileInView="visible"
           viewport={viewport}
-          className="relative mt-16"
+          className="relative mt-8"
         >
           <div
             ref={trackRef}
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
-            className="flex gap-6 overflow-x-hidden"
+            className="flex gap-4 overflow-x-hidden"
           >
             {loopedImages.map((item, i) => (
               <div
                 key={`${item.title}-${i}`}
-                className="group relative h-[280px] w-[380px] shrink-0 overflow-hidden rounded-sm sm:h-[340px] sm:w-[440px]"
+                className="group relative aspect-[4/3] w-1/5 min-w-[420px] h-[180px] shrink-0 overflow-hidden rounded-sm"
               >
                 <Image
                   src={item.src}
                   alt={item.title}
                   fill
-                  sizes="440px"
+                  sizes="(max-width: 640px) 60vw, 20vw"
                   className="object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/10 to-transparent" />
-                <span className="absolute bottom-5 left-6 font-display text-xl text-bone">{item.title}</span>
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               </div>
             ))}
           </div>
@@ -632,14 +706,14 @@ function LiveShows() {
           <button
             aria-label="Scroll left"
             onClick={() => scrollByAmount(-1)}
-            className="absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2 flex h-11 w-11 items-center justify-center rounded-full border border-bone/20 bg-ink/80 text-bone backdrop-blur-sm transition-colors duration-300 hover:border-crimson hover:text-crimson"
+            className="absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2 flex h-11 w-11 items-center justify-center rounded-full border border-bone/20 bg-ink/90 text-bone backdrop-blur-sm transition-colors duration-300 hover:border-crimson hover:text-crimson"
           >
             <ChevronLeft size={18} />
           </button>
           <button
             aria-label="Scroll right"
             onClick={() => scrollByAmount(1)}
-            className="absolute right-0 top-1/2 -translate-x-1/2 -translate-y-1/2 flex h-11 w-11 items-center justify-center rounded-full border border-bone/20 bg-ink/80 text-bone backdrop-blur-sm transition-colors duration-300 hover:border-crimson hover:text-crimson"
+            className="absolute right-0 top-1/2 -translate-x-1/2 -translate-y-1/2 flex h-11 w-11 items-center justify-center rounded-full border border-bone/20 bg-ink/90 text-bone backdrop-blur-sm transition-colors duration-300 hover:border-crimson hover:text-crimson"
           >
             <ChevronRight size={18} />
           </button>
@@ -657,22 +731,22 @@ const SOCIAL_EVENTS = [
   {
     title: "Birthday",
     image:
-      "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?q=80&w=1200&auto=format&fit=crop",
+      "/services/entertainment.png",
   },
   {
     title: "Anniversary",
     image:
-      "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=1200&auto=format&fit=crop",
+      "/services/live-events.png",
   },
   {
     title: "Baby Shower",
     image:
-      "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=1200&auto=format&fit=crop",
+      "/services/social-events.png",
   },
   {
     title: "Private Parties",
     image:
-      "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?q=80&w=1200&auto=format&fit=crop",
+      "/services/wedding.png",
   },
 ];
 
@@ -708,7 +782,7 @@ function SocialEventCard({ title, image, i }) {
 
 function SocialEvents() {
   return (
-    <section className="relative overflow-hidden bg-ink py-16 sm:py-20 lg:py-[120px]">
+    <section className="relative overflow-hidden bg-ink py-10 sm:py-20 lg:py-10">
       <div className="container relative z-10">
         <div className="grid gap-10 lg:grid-cols-[260px_1fr] lg:items-center lg:gap-12">
           {/* HEADING */}
@@ -729,9 +803,9 @@ function SocialEvents() {
               initial="hidden"
               whileInView="visible"
               viewport={viewport}
-              className="font-display text-4xl leading-[1.1] text-bone sm:text-5xl lg:text-[42px]"
+              className="font-display text-4xl leading-[1.1] text-bone sm:text-5xl lg:text-[60px]"
             >
-              Social Events
+              Social<br/>Events
             </motion.h2>
           </div>
 
@@ -744,7 +818,12 @@ function SocialEvents() {
             className="grid grid-cols-2 gap-5 sm:gap-6 lg:grid-cols-4"
           >
             {SOCIAL_EVENTS.map((event, i) => (
-              <SocialEventCard key={event.title} title={event.title} image={event.image} i={i} />
+              <SocialEventCard
+                key={event.title}
+                title={event.title}
+                image={event.image}
+                i={i}
+              />
             ))}
           </motion.div>
         </div>
@@ -786,14 +865,54 @@ const VENUE_SERVICES = [
 ];
 
 const ENTERTAINMENT_ACTS = [
-  { title: "Singer", icon: Mic, image: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&w=800&auto=format&fit=crop" },
-  { title: "DJ", icon: Disc3, image: "https://images.unsplash.com/photo-1571266028243-e4733b0d3543?q=80&w=800&auto=format&fit=crop" },
-  { title: "Celebrity", icon: Sparkles, image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=800&auto=format&fit=crop" },
-  { title: "Anchor", icon: Mic2, image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=800&auto=format&fit=crop" },
-  { title: "Live Band", icon: Music2, image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=800&auto=format&fit=crop" },
-  { title: "Dancers", icon: PersonStanding, image: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?q=80&w=800&auto=format&fit=crop" },
-  { title: "Stand-Up", icon: Podcast, image: "https://images.unsplash.com/photo-1585699324551-f6c309eedeca?q=80&w=800&auto=format&fit=crop" },
-  { title: "Special Acts", icon: Wand2, image: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?q=80&w=800&auto=format&fit=crop" },
+  {
+    title: "Singer",
+    icon: Mic,
+    image:
+      "/services/live-events.png",
+  },
+  {
+    title: "DJ",
+    icon: Disc3,
+    image:
+      "/services/social-events.png",
+  },
+  {
+    title: "Celebrity",
+    icon: Sparkles,
+    image:
+      "/services/wedding.png",
+  },
+  {
+    title: "Anchor",
+    icon: Mic2,
+    image:
+      "/services/corporte-event.png",
+  },
+  {
+    title: "Live Band",
+    icon: Music2,
+    image:
+      "/services/event-management.png",
+  },
+  {
+    title: "Dancers",
+    icon: PersonStanding,
+    image:
+      "/services/wedding.png",
+  },
+  {
+    title: "Stand-Up",
+    icon: Podcast,
+    image:
+      "/services/social-events.png",
+  },
+  {
+    title: "Special Acts",
+    icon: Wand2,
+    image:
+      "/services/live-events.png",
+  },
 ];
 
 function VenueManagement() {
@@ -806,40 +925,17 @@ function VenueManagement() {
     >
       <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm sm:aspect-[16/10] lg:aspect-[4/3]">
         <Image
-          src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=1600&auto=format&fit=crop"
+          src="/services/corporte-event.png"
           alt="Venue Management"
           fill
           sizes="(max-width: 1024px) 100vw, 50vw"
           className="object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent" />
-        <span className="absolute bottom-6 left-6 font-display text-2xl text-bone sm:text-3xl">
+        <span className="absolute font-bold left-6 font-display text-2xl text-crimson sm:text-3xl">
           Venue Management
         </span>
       </div>
-
-      <motion.div
-        variants={staggerContainer(0.06, 0.2)}
-        initial="hidden"
-        whileInView="visible"
-        viewport={viewport}
-        className="mt-8 flex flex-wrap items-start justify-between gap-x-4 gap-y-6"
-      >
-        {VENUE_SERVICES.map((svc) => (
-          <motion.div
-            key={svc.label}
-            variants={fadeUp}
-            className="flex w-[calc(33%-12px)] flex-col items-center gap-2.5 text-center sm:w-auto"
-          >
-            <div className="flex h-11 w-11 items-center justify-center rounded-full border border-bone/15 text-bone-muted transition-colors duration-300 hover:border-crimson hover:text-crimson">
-              <svc.icon size={16} />
-            </div>
-            <span className="text-[10px] uppercase leading-tight tracking-widest2 text-bone-muted sm:text-[11px]">
-              {svc.label}
-            </span>
-          </motion.div>
-        ))}
-      </motion.div>
     </motion.div>
   );
 }
@@ -884,7 +980,12 @@ function Entertainment() {
         className="grid grid-cols-4 gap-3 sm:gap-4"
       >
         {ENTERTAINMENT_ACTS.map((act, i) => (
-          <EntertainmentCard key={act.title} title={act.title} image={act.image} i={i} />
+          <EntertainmentCard
+            key={act.title}
+            title={act.title}
+            image={act.image}
+            i={i}
+          />
         ))}
       </motion.div>
     </motion.div>
@@ -944,8 +1045,8 @@ function WhyChooseCard({ icon: Icon, title, description, i }) {
       variants={fadeUp}
       className="group flex items-start gap-4 border border-bone/10 bg-bone/[0.02] p-6 transition-colors duration-300 hover:border-crimson/40 sm:p-7"
     >
-      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-crimson/40 text-crimson transition-all duration-300 group-hover:bg-crimson group-hover:text-bone">
-        <Icon size={18} />
+      <div className="flex h-11 w-11 shrink-0 items-center justify-center  text-crimson transition-all duration-300 group-hover:bg-crimson group-hover:text-bone">
+        <Icon size={32} />
       </div>
       <div>
         <h3 className="font-display text-base text-bone sm:text-lg">{title}</h3>
@@ -959,7 +1060,7 @@ function WhyChooseCard({ icon: Icon, title, description, i }) {
 
 function WhyChoose() {
   return (
-    <section className="relative overflow-hidden bg-ink-soft py-16 sm:py-20 lg:py-[100px]">
+    <section className="relative overflow-hidden bg-ink-soft py-10 sm:py-20 lg:py-10">
       <div className="container relative z-10">
         <SectionHeading eyebrow="Why Choose RAJ" align="center" />
 
@@ -971,38 +1072,17 @@ function WhyChoose() {
           className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4"
         >
           {WHY_CHOOSE_ITEMS.map((item, i) => (
-            <WhyChooseCard key={item.title} icon={item.icon} title={item.title} description={item.description} i={i} />
+            <WhyChooseCard
+              key={item.title}
+              icon={item.icon}
+              title={item.title}
+              description={item.description}
+              i={i}
+            />
           ))}
         </motion.div>
       </div>
     </section>
-  );
-}
-
-/* ================================================================== */
-/*  SECTION 10 — CLIENTS                                                */
-/* ================================================================== */
-
-const CLIENT_LOGOS = [
-  "TCS",
-  "Infosys",
-  "Reliance",
-  "Mahindra",
-  "Apollo Hospitals",
-  "Wedding Clients",
-];
-
-function ClientLogo({ name, i }) {
-  return (
-    <motion.div
-      custom={i}
-      variants={fadeUp}
-      className="group flex items-center justify-center border border-bone/10 px-6 py-8 transition-colors duration-300 hover:border-crimson/30 sm:py-10"
-    >
-      <span className="font-display text-lg text-bone-muted grayscale transition-all duration-300 group-hover:text-bone group-hover:grayscale-0 sm:text-xl">
-        {name}
-      </span>
-    </motion.div>
   );
 }
 

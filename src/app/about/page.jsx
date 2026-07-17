@@ -477,76 +477,76 @@ function OurJourney() {
   );
 }
 
-function Team() {
-  return (
-    <section className="px-6 py-24 sm:px-10" style={{ borderTop: `1px solid ${BORDER}` }}>
-      <div className="mx-auto max-w-6xl text-center">
-        <Eyebrow center>The Minds Behind The Magic</Eyebrow>
-        <h2 className="mt-4 font-serif text-3xl sm:text-4xl" style={{ color: HEADING }}>
-          MEET OUR <span style={{ color: PRIMARY }}>LEADERS</span>
-        </h2>
+// function Team() {
+//   return (
+//     <section className="px-6 py-24 sm:px-10" style={{ borderTop: `1px solid ${BORDER}` }}>
+//       <div className="mx-auto max-w-6xl text-center">
+//         <Eyebrow center>The Minds Behind The Magic</Eyebrow>
+//         <h2 className="mt-4 font-serif text-3xl sm:text-4xl" style={{ color: HEADING }}>
+//           MEET OUR <span style={{ color: PRIMARY }}>LEADERS</span>
+//         </h2>
 
-        <div className="mt-14 grid grid-cols-1 gap-6 text-left sm:grid-cols-2 lg:grid-cols-4">
-          {LEADERS.map((person, i) => (
-            <motion.div
-              key={person.name}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              whileHover={{ y: -8 }}
-              className="group overflow-hidden rounded-[20px] backdrop-blur-sm transition-shadow duration-300"
-              style={{ background: "rgba(20,20,20,0.6)", border: `1px solid ${BORDER}` }}
-              onMouseEnter={(e) => (e.currentTarget.style.boxShadow = `0 20px 50px -20px ${GLOW}`)}
-              onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "none")}
-            >
-              <div className="relative h-64 overflow-hidden">
-                <img
-                  src={person.img}
-                  alt={person.name}
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${CARD}, transparent 60%)` }} />
-              </div>
-              <div className="p-5">
-                <h3 className="font-serif text-lg" style={{ color: HEADING }}>
-                  {person.name}
-                </h3>
-                <p className="text-xs font-semibold uppercase tracking-widest" style={{ color: PRIMARY }}>
-                  {person.role}
-                </p>
-                <p className="mt-3 text-xs leading-relaxed" style={{ color: PARA }}>
-                  {person.desc}
-                </p>
-                <div className="mt-4 flex gap-3">
-                  {[FaFacebook, FaInstagram, FaLinkedin].map((Icon, idx) => (
-                    <a
-                      key={idx}
-                      href="#"
-                      aria-label={`${person.name} social link`}
-                      className="flex h-8 w-8 items-center justify-center rounded-full transition-colors duration-300"
-                      style={{ border: `1px solid ${BORDER}`, color: PARA }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.color = PRIMARY;
-                        e.currentTarget.style.borderColor = PRIMARY;
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.color = PARA;
-                        e.currentTarget.style.borderColor = BORDER;
-                      }}
-                    >
-                      <Icon size={14} />
-                    </a>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
+//         <div className="mt-14 grid grid-cols-1 gap-6 text-left sm:grid-cols-2 lg:grid-cols-4">
+//           {LEADERS.map((person, i) => (
+//             <motion.div
+//               key={person.name}
+//               initial={{ opacity: 0, y: 30 }}
+//               whileInView={{ opacity: 1, y: 0 }}
+//               viewport={{ once: true, margin: "-40px" }}
+//               transition={{ duration: 0.5, delay: i * 0.1 }}
+//               whileHover={{ y: -8 }}
+//               className="group overflow-hidden rounded-[20px] backdrop-blur-sm transition-shadow duration-300"
+//               style={{ background: "rgba(20,20,20,0.6)", border: `1px solid ${BORDER}` }}
+//               onMouseEnter={(e) => (e.currentTarget.style.boxShadow = `0 20px 50px -20px ${GLOW}`)}
+//               onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "none")}
+//             >
+//               <div className="relative h-64 overflow-hidden">
+//                 <img
+//                   src={person.img}
+//                   alt={person.name}
+//                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+//                 />
+//                 <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${CARD}, transparent 60%)` }} />
+//               </div>
+//               <div className="p-5">
+//                 <h3 className="font-serif text-lg" style={{ color: HEADING }}>
+//                   {person.name}
+//                 </h3>
+//                 <p className="text-xs font-semibold uppercase tracking-widest" style={{ color: PRIMARY }}>
+//                   {person.role}
+//                 </p>
+//                 <p className="mt-3 text-xs leading-relaxed" style={{ color: PARA }}>
+//                   {person.desc}
+//                 </p>
+//                 <div className="mt-4 flex gap-3">
+//                   {[FaFacebook, FaInstagram, FaLinkedin].map((Icon, idx) => (
+//                     <a
+//                       key={idx}
+//                       href="#"
+//                       aria-label={`${person.name} social link`}
+//                       className="flex h-8 w-8 items-center justify-center rounded-full transition-colors duration-300"
+//                       style={{ border: `1px solid ${BORDER}`, color: PARA }}
+//                       onMouseEnter={(e) => {
+//                         e.currentTarget.style.color = PRIMARY;
+//                         e.currentTarget.style.borderColor = PRIMARY;
+//                       }}
+//                       onMouseLeave={(e) => {
+//                         e.currentTarget.style.color = PARA;
+//                         e.currentTarget.style.borderColor = BORDER;
+//                       }}
+//                     >
+//                       <Icon size={14} />
+//                     </a>
+//                   ))}
+//                 </div>
+//               </div>
+//             </motion.div>
+//           ))}
+//         </div>
+//       </div>
+//     </section>
+//   );
+// }
 
 function OurPassion() {
   return (
@@ -660,7 +660,7 @@ export default function AboutPage() {
         <Hero />
         <OurImpact />
         <OurJourney />
-        <Team />
+        {/* <Team /> */}
         <OurPassion />
         <Footer />
       </div>
