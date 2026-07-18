@@ -4,40 +4,40 @@ import Link from "next/link";
 
 const SERVICES = [
   {
-    icon: "rings",
-    title: "Weddings",
-    description: "Beautifully planned weddings that reflect your love story.",
-    image: "/services/wedding.png",
+    icon: "kids",
+    title: "Kids Fashion Show",
+    description: "Runway-ready fashion shows designed to spotlight young talent.",
+    image: "/services/kids_fashion_show.png",
+  },
+  {
+    icon: "trophy",
+    title: "Kids Talent Hunt",
+    description: "Fun, high-energy talent competitions that let kids shine.",
+    image: "/services/kids_talent.png",
+  },
+  {
+    icon: "star",
+    title: "Celebrity Management",
+    description: "End-to-end coordination for celebrity appearances and bookings.",
+    image: "/services/celeberity-managment.png",
+  },
+  {
+    icon: "mic",
+    title: "Award Shows",
+    description: "Grand, red-carpet-ready award ceremonies executed flawlessly.",
+    image: "/services/award_show.png",
+  },
+  {
+    icon: "megaphone",
+    title: "Brand Promotion",
+    description: "Creative activations and campaigns that put your brand center stage.",
+    image: "/services/brand-promotion.png",
   },
   {
     icon: "briefcase",
     title: "Corporate Events",
     description: "Professional events that inspire, engage and impress.",
     image: "/services/corporte-event.png",
-  },
-  {
-    icon: "mic",
-    title: "Live Shows",
-    description: "From concerts to celebrity appearances, we make it unforgettable.",
-    image: "/services/live-events.png",
-  },
-  {
-    icon: "confetti",
-    title: "Social Events",
-    description: "Birthdays, anniversaries & private parties made extraordinary.",
-    image: "/services/social-events.png",
-  },
-  {
-    icon: "venue",
-    title: "Venue Management",
-    description: "We help you find the perfect venue and manage it flawlessly.",
-    image: "/services/event-management.png",
-  },
-  {
-    icon: "trophy",
-    title: "Entertainment",
-    description: "Artists, performers & unique acts for every kind of event.",
-    image: "/services/entertainment.png",
   },
 ];
 

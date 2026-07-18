@@ -13,8 +13,8 @@ const FOOTER_LINKS = [
 ];
 
 const SOCIALS = [
-  { label: "Facebook", href: "/", icon: FaFacebookF },
-  { label: "Instagram", href: "/", icon: FaInstagram },
+  { label: "Facebook", href: "/facebook.com/rajentertainmentindore", icon: FaFacebookF },
+  { label: "Instagram", href: "/instagram.com/rajentertainment246?", icon: FaInstagram },
   { label: "YouTube", href: "/", icon: FaYoutube },
 ];
 
@@ -22,20 +22,20 @@ const CONTACT_ITEMS = [
   {
     icon: FiPhone,
     label: "Call",
-    value: "+91 98765 43210",
-    href: "tel:+919876543210",
+    value: "+919752054039",
+    href: "tel:+919752054039",
   },
   {
     icon: FaWhatsapp,
     label: "WhatsApp",
-    value: "+91 98765 43210",
-    href: "https://wa.me/919876543210",
+    value: "+91 97520 54039",
+    href: "https://wa.me/919752054039",
   },
   {
     icon: FiMail,
     label: "Email",
-    value: "info@rajentertainments.com",
-    href: "mailto:info@rajentertainments.com",
+    value: "Rajentertainment@gmail.com",
+    href: "mailto:Rajentertainment@gmail.com",
   },
 ];
 

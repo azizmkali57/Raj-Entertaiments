@@ -28,10 +28,6 @@ import {
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
-/* ================================================================== */
-/*  SHARED ANIMATION VARIANTS — reused by every section below          */
-/* ================================================================== */
-
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
   visible: (i = 0) => ({
@@ -90,10 +86,6 @@ const staggerContainer = (staggerChildren = 0.12, delayChildren = 0) => ({
 });
 
 const viewport = { once: true, margin: "-100px" };
-
-/* ================================================================== */
-/*  SHARED UI PRIMITIVES                                               */
-/* ================================================================== */
 
 function SectionHeading({
   eyebrow,
@@ -364,7 +356,7 @@ function Hero() {
             {HERO_STATS.map((stat, i) => (
               <div
                 key={stat.label}
-                className="flex items-center gap-4 lg:flex-row-reverse"
+                className="flex items-start gap-4 lg:items-center lg:flex-row-reverse"
               >
                 <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-crimson/40 text-crimson">
                   <stat.icon size={18} />
@@ -627,7 +619,7 @@ function LiveShows() {
       {/* ambient background, very subtle */}
       <div className="absolute inset-0 opacity-10">
         <Image
-          src="/contact/conatct-hero.jpeg"
+          src="/contact/conatct-hero.png"
           alt=""
           fill
           sizes="100vw"
@@ -730,23 +722,19 @@ function LiveShows() {
 const SOCIAL_EVENTS = [
   {
     title: "Birthday",
-    image:
-      "/services/entertainment.png",
+    image: "/services/entertainment.png",
   },
   {
     title: "Anniversary",
-    image:
-      "/services/live-events.png",
+    image: "/services/live-events.png",
   },
   {
     title: "Baby Shower",
-    image:
-      "/services/social-events.png",
+    image: "/services/social-events.png",
   },
   {
     title: "Private Parties",
-    image:
-      "/services/wedding.png",
+    image: "/services/wedding.png",
   },
 ];
 
@@ -805,7 +793,9 @@ function SocialEvents() {
               viewport={viewport}
               className="font-display text-4xl leading-[1.1] text-bone sm:text-5xl lg:text-[60px]"
             >
-              Social<br/>Events
+              Social
+              <br />
+              Events
             </motion.h2>
           </div>
 
@@ -868,50 +858,42 @@ const ENTERTAINMENT_ACTS = [
   {
     title: "Singer",
     icon: Mic,
-    image:
-      "/services/live-events.png",
+    image: "/services/live-events.png",
   },
   {
     title: "DJ",
     icon: Disc3,
-    image:
-      "/services/social-events.png",
+    image: "/services/social-events.png",
   },
   {
     title: "Celebrity",
     icon: Sparkles,
-    image:
-      "/services/wedding.png",
+    image: "/services/wedding.png",
   },
   {
     title: "Anchor",
     icon: Mic2,
-    image:
-      "/services/corporte-event.png",
+    image: "/services/corporte-event.png",
   },
   {
     title: "Live Band",
     icon: Music2,
-    image:
-      "/services/event-management.png",
+    image: "/services/event-management.png",
   },
   {
     title: "Dancers",
     icon: PersonStanding,
-    image:
-      "/services/wedding.png",
+    image: "/services/wedding.png",
   },
   {
     title: "Stand-Up",
     icon: Podcast,
-    image:
-      "/services/social-events.png",
+    image: "/services/social-events.png",
   },
   {
     title: "Special Acts",
     icon: Wand2,
-    image:
-      "/services/live-events.png",
+    image: "/services/live-events.png",
   },
 ];
 

@@ -4,9 +4,9 @@ import Link from "next/link";
 import { useRef, useState } from "react";
 
 const SOCIALS = [
-  { label: "Instagram", href: "#", icon: "instagram" },
-  { label: "Facebook", href: "#", icon: "facebook" },
-  { label: "YouTube", href: "#", icon: "youtube" },
+  { label: "Instagram", href: "/instagram.com/rajentertainment246?", icon: "instagram" },
+  { label: "Facebook", href: "/facebook.com/rajentertainmentindore", icon: "facebook" },
+  { label: "YouTube", href: "", icon: "youtube" },
 ];
 
 export default function Hero() {
@@ -17,7 +17,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen items-start overflow-hidden bg-ink lg:items-center"
+      className="relative flex min-h-screen items-end overflow-hidden bg-ink pb-20 lg:items-center lg:pb-0"
     >
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-ink" />
@@ -37,6 +37,9 @@ export default function Hero() {
           <div className="absolute inset-y-0 left-0 hidden w-48 bg-gradient-to-r from-ink via-ink/70 to-transparent lg:block" />
         </div>
 
+        {/* Mobile scrim: strong bottom-up gradient so text stays readable
+            over the busy video, without flattening it to a solid block */}
+        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/70 to-ink/20 lg:hidden" />
         <div className="absolute inset-0 bg-ink/40 lg:bg-ink/10" />
         <div className="absolute inset-0 bg-stage-glow" />
         <div className="absolute inset-0 bg-vignette lg:opacity-60" />
@@ -51,44 +54,44 @@ export default function Hero() {
 
       <div className="container relative z-10 pt-32 lg:pt-8">
         <div className="max-w-xl animate-fade-up lg:max-w-md">
-          <div className="mb-4 flex items-center gap-3">
+          <div className="mb-3 flex items-center gap-3 lg:mb-4">
             <CrownMark />
-            <p className="eyebrow text-xs font-semibold uppercase tracking-[0.35em] text-crimson">
+            <p className="eyebrow text-[11px] font-semibold uppercase tracking-[0.3em] text-crimson lg:text-xs lg:tracking-[0.35em]">
               We Craft
             </p>
           </div>
 
-          <h1 className="font-display text-[2.75rem] font-bold leading-[1.08] tracking-tight sm:text-6xl md:text-[4.25rem]">
+          <h1 className="font-display text-[2.25rem] font-bold leading-[1.1] tracking-tight sm:text-6xl md:text-[4.25rem]">
             <span className="block text-bone">Extraordinary</span>
             <span className="block text-crimson">Experiences</span>
           </h1>
 
-          <span className="mt-5 block h-px w-16 bg-crimson" />
+          <span className="mt-4 block h-px w-14 bg-crimson lg:mt-5 lg:w-16" />
 
-          <p className="mt-5 max-w-sm text-[15px] font-light leading-relaxed text-bone-muted/90">
+          <p className="mt-4 max-w-sm text-sm font-light leading-relaxed text-bone-muted/90 lg:mt-5 lg:text-[15px]">
             From intimate gatherings to grand celebrations, we turn your
             vision into unforgettable memories.
           </p>
 
-          <div className="mt-8 flex flex-wrap items-center gap-4 sm:gap-6">
+          <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-6 lg:mt-8">
             <Link
-              href="#contact"
-              className="btn-primary text-[11px] font-semibold uppercase tracking-[0.2em]"
+              href="/contact"
+              className="btn-primary justify-center text-[11px] font-semibold uppercase tracking-[0.2em]"
             >
               Book an Event
               <ArrowIcon />
             </Link>
             <Link
-              href="#services"
-              className="btn-outline text-[11px] font-semibold uppercase tracking-[0.2em]"
+              href="/services"
+              className="btn-outline justify-center text-[11px] font-semibold uppercase tracking-[0.2em]"
             >
               Explore Services
             </Link>
           </div>
 
-          <button
+          {/* <button
             type="button"
-            className="group mt-10 flex items-center gap-3 text-bone/70 transition-colors duration-300 hover:text-bone"
+            className="group mt-8 flex items-center gap-3 text-bone/70 transition-colors duration-300 hover:text-bone lg:mt-10"
           >
             <span className="flex h-9 w-9 items-center justify-center rounded-full border border-bone/25 transition-colors duration-300 group-hover:border-crimson group-hover:text-crimson">
               <PlayIcon />
@@ -96,7 +99,7 @@ export default function Hero() {
             <span className="text-[11px] font-semibold uppercase tracking-[0.2em]">
               Watch Showreel
             </span>
-          </button>
+          </button> */}
         </div>
       </div>
 
@@ -125,7 +128,7 @@ export default function Hero() {
         ))}
       </div>
 
-      <div className="absolute inset-x-0 bottom-10 z-10 flex flex-col items-center gap-3 text-bone/70">
+      <div className="absolute inset-x-0 bottom-4 z-10 flex flex-col items-center gap-2 text-bone/70 lg:bottom-10 lg:gap-3">
         <span className="flex h-9 w-6 justify-center rounded-full border border-bone/30 pt-2">
           <span className="h-1.5 w-1 rounded-full bg-crimson animate-bounce-y" />
         </span>

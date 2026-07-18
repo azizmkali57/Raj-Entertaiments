@@ -25,12 +25,12 @@ const EVENT_TYPES = [
 ];
 
 const INFO_CARDS = [
-  { icon: Phone, title: "Call Us", line: "+91 98765 43210" },
-  { icon: MessageCircle, title: "WhatsApp", line: "+91 98765 43210" },
-  { icon: Mail, title: "Email", line: "info@rajentertainments.com" },
+  { icon: Phone, title: "Call Us", line: "+91 97520 54039" },
+  { icon: MessageCircle, title: "WhatsApp", line: "+91 97520 54039" },
+  { icon: Mail, title: "Email", line: "Rajentertainment246@gmail.com" },
   { icon: MapPin, title: "Office Address", line: "Indore, Madhya Pradesh, India" },
   { icon: Clock, title: "Business Hours", line: "Mon – Sat, 10 AM – 8 PM" },
-  { icon: BsInstagram, title: "Instagram", line: "@rajentertainments" },
+  { icon: BsInstagram, title: "Instagram", line: "@rajentertainment246" },
 ];
 
 const FAQS = [
@@ -164,7 +164,7 @@ function ContactForm() {
 
         <Field id="eventDate" label="Event Date" type="date" value={data.eventDate} onChange={set("eventDate")} />
         <Field id="guestCount" label="Guest Count" type="number" value={data.guestCount} onChange={set("guestCount")} />
-        <Field id="budget" label="Budget (₹)" value={data.budget} onChange={set("budget")} />
+        {/* <Field id="budget" label="Budget (₹)" value={data.budget} onChange={set("budget")} /> */}
 
         <div className="relative sm:col-span-2">
           <textarea
@@ -293,7 +293,7 @@ function HeroContact() {
       >
         <motion.div style={{ rotateX, rotateY, x: shiftX, y: shiftY, scale: 1.08 }} className="absolute inset-[-6%]">
           <motion.img
-            src="/contact/conatct-hero.jpeg"
+            src="/contact/conatct-hero.png"
             alt="Elegant Raj Entertainments stage setup with cinematic lighting"
             initial={{ scale: 1.15 }}
             animate={{ scale: 1.28 }}
@@ -498,11 +498,11 @@ function MapSection() {
               </li>
               <li className="flex items-start gap-3">
                 <Phone size={15} className="mt-0.5 shrink-0 text-crimson" />
-                +91 98765 43210
+                +91 97520 54039
               </li>
               <li className="flex items-start gap-3">
                 <Mail size={15} className="mt-0.5 shrink-0 text-crimson" />
-                info@rajentertainments.com
+                Rajentertainment246@gmail.com
               </li>
               <li className="flex items-start gap-3">
                 <Clock size={15} className="mt-0.5 shrink-0 text-crimson" />
@@ -647,7 +647,7 @@ function InquiryBanner() {
             <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
           </motion.a>
           <motion.a
-            href="https://wa.me/919876543210"
+            href="https://wa.me/9752054039"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.04 }}
