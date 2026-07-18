@@ -24,6 +24,25 @@ import {
   Camera,
   ChevronLeft,
   ChevronRight,
+  Building2,
+  Palette,
+  ConciergeBell,
+  Truck,
+  ParkingCircle,
+  ShieldCheck,
+  Mic,
+  Disc3,
+  Sparkles,
+  Mic2,
+  Music2,
+  PersonStanding,
+  Podcast,
+  Wand2,
+  Package,
+  Flag,
+  Trophy,
+  Mic as MicIcon,
+  Award,
 } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -225,8 +244,8 @@ function StatCounter({ value, suffix = "", label, delay = 0 }) {
 
 const HERO_STATS = [
   { icon: Users, value: 500, suffix: "+", label: "Events" },
-  { icon: Star, value: 10, suffix: "+", label: "Years" },
-  { icon: Heart, value: 100, suffix: "%", label: "Happy Clients" },
+  { icon: Trophy, value: 50, suffix: "+", label: "Talent Hunts" },
+  { icon: Star, value: 100, suffix: "+", label: "Celebrities" },
 ];
 
 function Hero() {
@@ -269,7 +288,7 @@ function Hero() {
       >
         <Image
           src="/services/hero.png"
-          alt="Luxury event stage"
+          alt="Grand stage production"
           fill
           priority
           sizes="100vw"
@@ -301,11 +320,11 @@ function Hero() {
               animate="visible"
               className="font-display text-5xl leading-[1.05] text-bone sm:text-6xl lg:text-7xl"
             >
-              Crafting
+              Where Talent
               <br />
-              Extraordinary
+              Meets
               <br />
-              <span className="text-crimson">Celebrations</span>
+              <span className="text-crimson">The Spotlight</span>
             </motion.h1>
 
             <motion.p
@@ -315,8 +334,9 @@ function Hero() {
               animate="visible"
               className="mt-7 max-w-md text-sm leading-relaxed text-bone-muted sm:text-base"
             >
-              From intimate gatherings to grand productions, we transform every
-              event into unforgettable memories.
+              From nurturing young talent to managing celebrity nights and
+              brand campaigns, we bring vision, precision and spectacle to
+              every stage.
             </motion.p>
 
             <motion.div
@@ -508,27 +528,35 @@ function SplitService({
   );
 }
 
-function WeddingSection() {
+/* ================================================================== */
+/*  SECTION 01 — KIDS TALENT HUNT                                      */
+/* ================================================================== */
+
+function KidsTalentHuntSection() {
   return (
     <SplitService
       number="01"
-      eyebrow="Luxury"
-      title="Weddings"
-      description="Every wedding deserves to feel timeless. We design ceremonies that blend tradition with cinematic elegance, down to the last detail."
+      eyebrow="Talent"
+      title="Kids Talent Hunt"
+      description="We give young stars their first stage — talent hunt shows designed to discover, nurture and celebrate the next generation of performers."
       items={[
-        "Destination Weddings",
-        "Traditional Weddings",
-        "Reception",
-        "Engagement",
-        "Mehendi",
-        "Haldi",
-        "Sangeet",
+        "Singing Competitions",
+        "Dance Competitions",
+        "Talent Auditions",
+        "Kids Fashion Shows",
+        "Reality-Style Contests",
+        "Prize Distribution Ceremonies",
+        "School & Community Talent Fests",
       ]}
       ctaLabel="View Gallery"
-      image="/services/wedding-section.png"
+      image="/services/kids_fashion_show.png"
     />
   );
 }
+
+/* ================================================================== */
+/*  SECTION 02 — CORPORATE EVENTS                                      */
+/* ================================================================== */
 
 function CorporateSection() {
   return (
@@ -543,7 +571,7 @@ function CorporateSection() {
         "Product Launches",
         "Annual Meets",
         "Brand Activations",
-        "Dealer Meets",
+        "Dealer & Channel Partner Meets",
       ]}
       ctaLabel="Enquire Now"
       image="/services/live-events.png"
@@ -552,39 +580,43 @@ function CorporateSection() {
   );
 }
 
-const LIVE_SHOW_SERVICES = [
+/* ================================================================== */
+/*  SECTION — AWARD SHOWS                                              */
+/* ================================================================== */
+
+const AWARD_SHOW_SERVICES = [
   { icon: Lightbulb, label: "Lighting" },
   { icon: MonitorPlay, label: "LED" },
   { icon: Volume2, label: "Sound" },
   { icon: Layers, label: "Stage" },
-  // { icon: Users, label: "Artist Management" },
+  { icon: Trophy, label: "Trophies" },
   { icon: Camera, label: "Photography" },
 ];
 
-const LIVE_SHOW_IMAGES = [
+const AWARD_SHOW_IMAGES = [
   {
     src: "/services/corporte-event.png",
-    title: "Concert Nights",
+    title: "Award Ceremonies",
   },
   {
     src: "/services/entertainment.png",
-    title: "Stage Production",
+    title: "Red Carpet Nights",
   },
   {
     src: "/services/event-management.png",
-    title: "Celebrity Performances",
+    title: "Trophy Presentations",
   },
   {
     src: "/services/social-events.png",
-    title: "Live Bands",
+    title: "Celebrity Hosted Shows",
   },
   {
     src: "/services/wedding.png",
-    title: "Award Ceremonies",
+    title: "Felicitation Events",
   },
 ];
 
-function LiveShows() {
+function AwardShows() {
   const trackRef = useRef(null);
   const [isPaused, setIsPaused] = useState(false);
 
@@ -612,7 +644,7 @@ function LiveShows() {
     track.scrollBy({ left: dir * 420, behavior: "smooth" });
   };
 
-  const loopedImages = [...LIVE_SHOW_IMAGES, ...LIVE_SHOW_IMAGES];
+  const loopedImages = [...AWARD_SHOW_IMAGES, ...AWARD_SHOW_IMAGES];
 
   return (
     <section className="relative overflow-hidden py-10 sm:py-20 lg:py-10">
@@ -630,10 +662,10 @@ function LiveShows() {
 
       <div className="container relative z-10">
         <SectionHeading
-          eyebrow="Live"
-          title="Live"
+          eyebrow="Recognition"
+          title="Award"
           highlight="Shows"
-          description="From concerts to celebrity nights."
+          description="Glittering nights that celebrate excellence, achievement and stardom."
           align="center"
         />
 
@@ -645,7 +677,7 @@ function LiveShows() {
           viewport={viewport}
           className="mt-5 flex flex-wrap items-center justify-center gap-x-10 gap-y-6 sm:gap-x-14"
         >
-          {LIVE_SHOW_SERVICES.map((svc) => (
+          {AWARD_SHOW_SERVICES.map((svc) => (
             <motion.div
               key={svc.label}
               variants={fadeUp}
@@ -716,29 +748,29 @@ function LiveShows() {
 }
 
 /* ================================================================== */
-/*  SECTION 5 — SOCIAL EVENTS                                          */
+/*  SECTION — CELEBRITY MANAGEMENT                                     */
 /* ================================================================== */
 
-const SOCIAL_EVENTS = [
+const CELEBRITY_MANAGEMENT_SERVICES = [
   {
-    title: "Birthday",
+    title: "Celebrity Booking",
     image: "/services/entertainment.png",
   },
   {
-    title: "Anniversary",
+    title: "Event Appearances",
     image: "/services/live-events.png",
   },
   {
-    title: "Baby Shower",
+    title: "Brand Endorsements",
     image: "/services/social-events.png",
   },
   {
-    title: "Private Parties",
+    title: "Meet & Greet",
     image: "/services/wedding.png",
   },
 ];
 
-function SocialEventCard({ title, image, i }) {
+function CelebrityCard({ title, image, i }) {
   return (
     <motion.div
       custom={i}
@@ -768,7 +800,7 @@ function SocialEventCard({ title, image, i }) {
   );
 }
 
-function SocialEvents() {
+function CelebrityManagement() {
   return (
     <section className="relative overflow-hidden bg-ink py-10 sm:py-20 lg:py-10">
       <div className="container relative z-10">
@@ -783,7 +815,7 @@ function SocialEvents() {
               viewport={viewport}
               className="eyebrow mb-4 block"
             >
-              Social
+              Celebrity
             </motion.span>
             <motion.h2
               custom={1}
@@ -793,9 +825,9 @@ function SocialEvents() {
               viewport={viewport}
               className="font-display text-4xl leading-[1.1] text-bone sm:text-5xl lg:text-[60px]"
             >
-              Social
+              Celebrity
               <br />
-              Events
+              Management
             </motion.h2>
           </div>
 
@@ -807,11 +839,11 @@ function SocialEvents() {
             viewport={viewport}
             className="grid grid-cols-2 gap-5 sm:gap-6 lg:grid-cols-4"
           >
-            {SOCIAL_EVENTS.map((event, i) => (
-              <SocialEventCard
-                key={event.title}
-                title={event.title}
-                image={event.image}
+            {CELEBRITY_MANAGEMENT_SERVICES.map((item, i) => (
+              <CelebrityCard
+                key={item.title}
+                title={item.title}
+                image={item.image}
                 i={i}
               />
             ))}
@@ -823,81 +855,53 @@ function SocialEvents() {
 }
 
 /* ================================================================== */
-/*  SECTION 6 — VENUE MANAGEMENT + ENTERTAINMENT                       */
+/*  SECTION — BRAND PROMOTION                                          */
 /* ================================================================== */
 
-import {
-  // ...add these to your existing lucide-react import
-  Building2,
-  Palette,
-  ConciergeBell,
-  Truck,
-  ParkingCircle,
-  ShieldCheck,
-  Mic,
-  Disc3,
-  Sparkles,
-  Mic2,
-  Music2,
-  PersonStanding,
-  Podcast,
-  Wand2,
-} from "lucide-react";
-
-const VENUE_SERVICES = [
-  { icon: Building2, label: "Venue Selection" },
-  { icon: Palette, label: "Decoration" },
-  { icon: Lightbulb, label: "Lighting" },
-  { icon: ConciergeBell, label: "Hospitality" },
-  { icon: Truck, label: "Logistics" },
-  { icon: ParkingCircle, label: "Parking" },
-  { icon: ShieldCheck, label: "Security" },
-];
-
-const ENTERTAINMENT_ACTS = [
+const PROMOTION_ACTIVITIES = [
   {
-    title: "Singer",
-    icon: Mic,
+    title: "Product Launch",
+    icon: Sparkles,
     image: "/services/live-events.png",
   },
   {
-    title: "DJ",
-    icon: Disc3,
+    title: "Roadshows",
+    icon: Truck,
     image: "/services/social-events.png",
   },
   {
-    title: "Celebrity",
-    icon: Sparkles,
+    title: "Mall Activation",
+    icon: Building2,
     image: "/services/wedding.png",
   },
   {
-    title: "Anchor",
-    icon: Mic2,
+    title: "Influencer Campaign",
+    icon: MicIcon,
     image: "/services/corporte-event.png",
   },
   {
-    title: "Live Band",
-    icon: Music2,
+    title: "Sampling Drive",
+    icon: Package,
     image: "/services/event-management.png",
   },
   {
-    title: "Dancers",
-    icon: PersonStanding,
+    title: "Exhibition Stall",
+    icon: Layers,
     image: "/services/wedding.png",
   },
   {
-    title: "Stand-Up",
-    icon: Podcast,
+    title: "Digital Campaign",
+    icon: MonitorPlay,
     image: "/services/social-events.png",
   },
   {
-    title: "Special Acts",
-    icon: Wand2,
+    title: "Retail Branding",
+    icon: Palette,
     image: "/services/live-events.png",
   },
 ];
 
-function VenueManagement() {
+function BrandPromotionHero() {
   return (
     <motion.div
       variants={slideInLeft}
@@ -908,21 +912,21 @@ function VenueManagement() {
       <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm sm:aspect-[16/10] lg:aspect-[4/3]">
         <Image
           src="/services/corporte-event.png"
-          alt="Venue Management"
+          alt="Brand Promotion"
           fill
           sizes="(max-width: 1024px) 100vw, 50vw"
           className="object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent" />
-        <span className="absolute font-bold left-6 font-display text-2xl text-crimson sm:text-3xl">
-          Venue Management
+        <span className="absolute font-bold left-6 bottom-6 font-display text-2xl text-crimson sm:text-3xl">
+          Brand Promotion
         </span>
       </div>
     </motion.div>
   );
 }
 
-function EntertainmentCard({ title, image, i }) {
+function PromotionCard({ title, image, i }) {
   return (
     <motion.div
       custom={i}
@@ -944,7 +948,7 @@ function EntertainmentCard({ title, image, i }) {
   );
 }
 
-function Entertainment() {
+function PromotionActivities() {
   return (
     <motion.div
       variants={slideInRight}
@@ -952,7 +956,7 @@ function Entertainment() {
       whileInView="visible"
       viewport={viewport}
     >
-      <span className="eyebrow mb-6 block">Entertainment</span>
+      <span className="eyebrow text-xl mb-6 block">Activities</span>
 
       <motion.div
         variants={staggerContainer(0.06, 0.15)}
@@ -961,8 +965,8 @@ function Entertainment() {
         viewport={viewport}
         className="grid grid-cols-4 gap-3 sm:gap-4"
       >
-        {ENTERTAINMENT_ACTS.map((act, i) => (
-          <EntertainmentCard
+        {PROMOTION_ACTIVITIES.map((act, i) => (
+          <PromotionCard
             key={act.title}
             title={act.title}
             image={act.image}
@@ -974,13 +978,13 @@ function Entertainment() {
   );
 }
 
-function VenueAndEntertainment() {
+function BrandPromotion() {
   return (
     <section className="relative overflow-hidden bg-ink py-16 sm:py-20 lg:py-[120px]">
       <div className="container relative z-10">
         <div className="grid gap-14 lg:grid-cols-2 lg:gap-16">
-          <VenueManagement />
-          <Entertainment />
+          <BrandPromotionHero />
+          <PromotionActivities />
         </div>
       </div>
     </section>
@@ -988,14 +992,8 @@ function VenueAndEntertainment() {
 }
 
 /* ================================================================== */
-/*  SECTION 7 — WHY CHOOSE RAJ                                         */
+/*  SECTION — WHY CHOOSE RAJ                                           */
 /* ================================================================== */
-
-import {
-  // ...add to your existing lucide-react import
-  Package,
-  Flag,
-} from "lucide-react";
 
 const WHY_CHOOSE_ITEMS = [
   {
@@ -1073,11 +1071,11 @@ export default function ServicesPage() {
     <main className="bg-ink">
       <Navbar />
       <Hero />
-      <WeddingSection />
+      <KidsTalentHuntSection />
       <CorporateSection />
-      <LiveShows />
-      <SocialEvents />
-      <VenueAndEntertainment />
+      <AwardShows />
+      <CelebrityManagement />
+      <BrandPromotion />
       <WhyChoose />
       <Footer />
     </main>
