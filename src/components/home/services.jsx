@@ -4,50 +4,28 @@ import Link from "next/link";
 
 const SERVICES = [
   {
-    icon: "kids",
-    title: "Kids Fashion Show",
-    description: "Runway-ready fashion shows designed to spotlight young talent.",
-    image: "/services/kids_fashion_show.png",
+    icon: "modeling",
+    title: "Modeling",
+    description:
+      "From runway to print — we scout, train and showcase talent ready to make a statement on any stage.",
+    image: "/services/child-modelling.png",
   },
   {
-    icon: "trophy",
-    title: "Kids Talent Hunt",
-    description: "Fun, high-energy talent competitions that let kids shine.",
-    image: "/services/kids_talent.png",
-  },
-  {
-    icon: "star",
-    title: "Celebrity Management",
-    description: "End-to-end coordination for celebrity appearances and bookings.",
-    image: "/services/celeberity-managment.png",
-  },
-  {
-    icon: "mic",
-    title: "Award Shows",
-    description: "Grand, red-carpet-ready award ceremonies executed flawlessly.",
-    image: "/services/award_show.png",
-  },
-  {
-    icon: "megaphone",
-    title: "Brand Promotion",
-    description: "Creative activations and campaigns that put your brand center stage.",
-    image: "/services/brand-promotion.png",
-  },
-  {
-    icon: "briefcase",
-    title: "Corporate Events",
-    description: "Professional events that inspire, engage and impress.",
-    image: "/services/corporte-event.png",
+    icon: "production",
+    title: "Production House",
+    description:
+      "Full-scale event production — concept, direction and execution handled end-to-end with precision.",
+    image: "/services/production-section.png",
   },
 ];
 
 export default function Services() {
   return (
-    <section id="services" className="bg-ink-soft py-24 sm:py-32">
+    <section id="services" className="bg-bone py-24 sm:py-32">
       <div className="container">
         <div className="mx-auto max-w-xl text-center">
           <p className="eyebrow mb-4">What We Do</p>
-          <h2 className="font-display text-4xl font-bold text-bone sm:text-5xl">
+          <h2 className="font-display text-4xl font-bold text-ink sm:text-5xl">
             Our Services
           </h2>
 
@@ -58,13 +36,52 @@ export default function Services() {
           </div>
         </div>
 
-        <div className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+        <div className="mx-auto mt-16 grid max-w-4xl grid-cols-1 gap-8 sm:grid-cols-2">
           {SERVICES.map((service) => (
             <ServiceCard key={service.title} {...service} />
           ))}
         </div>
       </div>
+
+      {/* Full-width diagonal marquee ribbon */}
+      <MarqueeRibbon />
     </section>
+  );
+}
+
+function MarqueeRibbon() {
+  const words = ["MODELING", "PRODUCTION HOUSE", "RAJ ENTERTAINMENTS"];
+  const track = Array.from({ length: 4 }).flatMap(() => words);
+
+  return (
+    <div className="relative mt-24 overflow-hidden py-8">
+      <div className="-mx-[10%] -rotate-2 border-y-2 border-crimson/20 bg-ink py-5 shadow-luxury">
+        <div className="marquee-track flex w-max items-center gap-10 whitespace-nowrap">
+          {[...track, ...track].map((word, i) => (
+            <span key={i} className="flex items-center gap-10">
+              <span className="font-display text-2xl font-bold uppercase tracking-[0.15em] text-bone sm:text-4xl">
+                {word}
+              </span>
+              <span className="h-2 w-2 rotate-45 bg-crimson" />
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <style jsx>{`
+        .marquee-track {
+          animation: marquee-scroll 28s linear infinite;
+        }
+        @keyframes marquee-scroll {
+          from {
+            transform: translateX(0);
+          }
+          to {
+            transform: translateX(-50%);
+          }
+        }
+      `}</style>
+    </div>
   );
 }
 
@@ -73,28 +90,36 @@ function ServiceCard({ icon, title, description, image }) {
     <Link href="/services" className="group relative block h-full">
       <span className="glow-ring pointer-events-none absolute -inset-px" />
 
-      <div className="card-clip relative flex h-full flex-col overflow-hidden bg-ink">
-        <div className="relative h-48 w-full overflow-hidden bg-ink-raised">
+      <div className="card-clip relative flex h-full flex-col overflow-hidden bg-white shadow-luxury-sm transition-shadow duration-300 group-hover:shadow-luxury">
+        <div className="relative h-64 w-full overflow-hidden bg-champagne sm:h-72">
           <img
             src={image}
             alt={title}
             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/5 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-ink/40 via-transparent to-transparent" />
         </div>
 
-        <div className="flex flex-1 flex-col gap-3 p-6">
-          <div className="-mt-10 h-8 w-8 text-crimson">
+        <div className="flex flex-1 flex-col gap-4 p-8">
+          {/* FIX: this badge used to have no `position` set, while the image
+              wrapper above is `relative`. Per CSS paint order, positioned
+              elements (even with z-index: auto) always paint above in-flow
+              non-positioned siblings — regardless of DOM order. So the
+              (unpositioned) badge was rendering BEHIND the (positioned)
+              image, even though it comes later in the markup. Adding
+              `relative z-10` here gives it its own stacking context above
+              the image. */}
+          <div className="relative z-10 -mt-14 flex h-12 w-12 items-center justify-center rounded-full bg-crimson text-bone border border-white shadow-luxury-sm">
             <ServiceIcon name={icon} />
           </div>
 
           <div>
-            <h3 className="font-display text-[15px] font-bold uppercase tracking-wide text-bone">
+            <h3 className="font-display text-2xl font-bold uppercase tracking-wide text-ink">
               {title}
             </h3>
           </div>
 
-          <p className="flex-1 text-xs leading-relaxed text-bone-muted">
+          <p className="flex-1 text-sm leading-relaxed text-ink/65">
             {description}
           </p>
 
@@ -109,7 +134,8 @@ function ServiceCard({ icon, title, description, image }) {
 
       <style jsx>{`
         .card-clip {
-          --cut: 20px;
+          --cut: 24px;
+          border-radius: 18px;
           clip-path: polygon(
             var(--cut) 0,
             100% 0,
@@ -120,33 +146,6 @@ function ServiceCard({ icon, title, description, image }) {
           );
         }
 
-        .glow-ring {
-          --cut: 20px;
-          padding: 1px;
-          clip-path: polygon(
-            var(--cut) 0,
-            100% 0,
-            100% calc(100% - var(--cut)),
-            calc(100% - var(--cut)) 100%,
-            0 100%,
-            0 var(--cut)
-          );
-          background: conic-gradient(
-            from 0deg,
-            transparent 0deg,
-            transparent 250deg,
-            rgba(226, 184, 110, 0.9) 295deg,
-            rgba(196, 46, 58, 0.95) 325deg,
-            transparent 360deg
-          );
-          -webkit-mask: linear-gradient(#000 0 0) content-box,
-            linear-gradient(#000 0 0);
-          -webkit-mask-composite: xor;
-          mask-composite: exclude;
-          opacity: 0.55;
-          animation: glow-spin 5s linear infinite;
-          transition: opacity 0.35s ease;
-        }
         :global(.group:hover) .glow-ring {
           opacity: 1;
         }
@@ -160,7 +159,7 @@ function ServiceCard({ icon, title, description, image }) {
           position: absolute;
           width: 26px;
           height: 1px;
-          background: rgba(196, 46, 58, 0.9);
+          background: rgba(122, 31, 28, 0.75);
           pointer-events: none;
         }
         .corner-accent--tl {
@@ -195,65 +194,34 @@ function ArrowIcon() {
 }
 
 function ServiceIcon({ name }) {
-  const common = { width: 17, height: 17, viewBox: "0 0 24 24", fill: "none" };
+  const common = { width: 22, height: 22, viewBox: "0 0 24 24", fill: "none" };
 
-  if (name === "rings") {
+  if (name === "modeling") {
     return (
       <svg {...common}>
-        <circle cx="9" cy="14" r="5" stroke="currentColor" strokeWidth="1.4" />
-        <circle cx="15" cy="14" r="5" stroke="currentColor" strokeWidth="1.4" />
-        <path d="M12 4L9.5 8.5H14.5L12 4Z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
+        <circle cx="12" cy="5" r="2.3" stroke="currentColor" strokeWidth="1.4" />
+        <path
+          d="M12 7.3V13M12 13L8 21M12 13L16 21M8.5 10L12 13L15.5 10"
+          stroke="currentColor"
+          strokeWidth="1.4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       </svg>
     );
   }
-  if (name === "briefcase") {
+  if (name === "production") {
     return (
       <svg {...common}>
-        <rect x="3" y="7.5" width="18" height="12" rx="1.5" stroke="currentColor" strokeWidth="1.4" />
-        <path d="M8.5 7.5V6a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v1.5" stroke="currentColor" strokeWidth="1.4" />
-        <path d="M3 12.5h18" stroke="currentColor" strokeWidth="1.4" />
+        <rect x="3" y="6" width="13" height="12" rx="1.5" stroke="currentColor" strokeWidth="1.4" />
+        <path
+          d="M16 10L21 7.5V16.5L16 14"
+          stroke="currentColor"
+          strokeWidth="1.4"
+          strokeLinejoin="round"
+        />
       </svg>
     );
   }
-  if (name === "mic") {
-    return (
-      <svg {...common}>
-        <rect x="9" y="2.5" width="6" height="11" rx="3" stroke="currentColor" strokeWidth="1.4" />
-        <path d="M5.5 11.5a6.5 6.5 0 0 0 13 0" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-        <path d="M12 18v3.5M9 21.5h6" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-      </svg>
-    );
-  }
-  if (name === "confetti") {
-    return (
-      <svg {...common}>
-        <path d="M4 20L14 10" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-        <rect x="15.5" y="3.5" width="3" height="3" rx="0.5" stroke="currentColor" strokeWidth="1.3" />
-        <circle cx="6" cy="6" r="1.4" stroke="currentColor" strokeWidth="1.3" />
-        <circle cx="20" cy="12" r="1.4" stroke="currentColor" strokeWidth="1.3" />
-        <path d="M10 4l1.5 1.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
-      </svg>
-    );
-  }
-  if (name === "venue") {
-    return (
-      <svg {...common}>
-        <path d="M4 21V10L12 4L20 10V21" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
-        <path d="M9 21V14H15V21" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
-      </svg>
-    );
-  }
-  return (
-    <svg {...common}>
-      <path
-        d="M7 4H17V9C17 12 14.8 14 12 14C9.2 14 7 12 7 9V4Z"
-        stroke="currentColor"
-        strokeWidth="1.4"
-        strokeLinejoin="round"
-      />
-      <path d="M12 14V18M8.5 21H15.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-      <path d="M7 5.5H4.5C4.5 8 5.5 9.5 7 9.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-      <path d="M17 5.5H19.5C19.5 8 18.5 9.5 17 9.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-    </svg>
-  );
+  return null;
 }

@@ -32,11 +32,11 @@ export default function Testimonials() {
   const [active, setActive] = useState(0);
 
   return (
-    <section id="testimonials" className="bg-ink-soft py-24 sm:py-32">
+    <section id="testimonials" className="bg-bone py-24 sm:py-32">
       <div className="container">
         <div className="mx-auto max-w-xl text-center">
           <p className="eyebrow mb-4">Client Loves</p>
-          <h2 className="font-display text-4xl font-bold text-bone sm:text-5xl">
+          <h2 className="font-display text-4xl font-bold text-ink sm:text-5xl">
             What Our Client Says
           </h2>
 
@@ -58,10 +58,9 @@ export default function Testimonials() {
             <button
               key={i}
               onClick={() => setActive(i)}
-              className={`transition-all duration-300 ${
-                active === i
-                  ? "h-2 w-2 rounded-full bg-[#c92e2e]"
-                  : "h-2 w-2 rounded-full border border-white/40"
+              aria-label={`Show testimonial ${i + 1}`}
+              className={`h-2 w-2 rounded-full transition-all duration-300 ${
+                active === i ? "bg-crimson" : "border border-ink/25"
               }`}
             />
           ))}
@@ -73,50 +72,24 @@ export default function Testimonials() {
 
 function TestimonialCard({ image, quote, name, role, onView }) {
   return (
-    <div
-      onMouseEnter={onView}
-      className="
-      relative
-      overflow-hidden
-      border
-      border-white/5
-      bg-[#131313]
-      px-8
-      py-7
-      transition-all
-      duration-300
-      hover:border-[#a32121]
-      hover:shadow-[0_0_30px_rgba(170,20,20,.18)]
-      "
-      style={{
-        clipPath: "polygon(18px 0%,100% 0%,100% 100%,0% 100%,0% 18px)",
-      }}
-    >
-      {/* chamfer border line */}
-      <span
-        className="absolute left-0 top-0 h-5 w-5 border-l border-t border-white/10"
-        style={{
-          clipPath: "polygon(100% 0,100% 1px,1px 100%,0 100%,0 0)",
-        }}
-      />
+    <div onMouseEnter={onView} className="card-luxury px-8 py-7">
+      <FaQuoteLeft className="text-2xl text-crimson" />
 
-      <FaQuoteLeft className="text-2xl text-[#cf3c3c]" />
-
-      <p className="mt-5 min-h-[95px] text-[15px] leading-7 text-white/70">
+      <p className="mt-5 min-h-[95px] text-[15px] leading-7 text-ink/70">
         {quote}
       </p>
 
       <div className="mt-7 flex items-center gap-4">
-        <div className="relative h-14 w-14 overflow-hidden rounded-full border border-[#cf3c3c]/40">
+        <div className="relative h-14 w-14 overflow-hidden rounded-full border border-crimson/40">
           <Image src={image} alt={name} fill className="object-cover" />
         </div>
 
         <div>
-          <h4 className="text-[13px] font-semibold uppercase tracking-[.18em] text-[#cf3c3c]">
+          <h4 className="text-[13px] font-semibold uppercase tracking-[.18em] text-crimson">
             {name}
           </h4>
 
-          <p className="mt-1 text-sm text-white/55">{role}</p>
+          <p className="mt-1 text-sm text-ink/55">{role}</p>
         </div>
       </div>
     </div>

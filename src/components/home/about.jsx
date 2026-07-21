@@ -6,22 +6,18 @@ const STATS = [
 
 export default function About() {
   return (
-    <section id="about" className="relative overflow-hidden bg-ink py-24 sm:py-32">
+    <section id="about" className="relative overflow-hidden bg-bone/95 py-24 sm:py-32">
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-[0.05] mix-blend-overlay"
+        className="pointer-events-none absolute inset-0 bg-luxury-marble"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 opacity-[0.05] mix-blend-multiply"
         style={{
           backgroundImage:
             "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
           backgroundSize: "220px 220px",
-        }}
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0"
-        style={{
-          backgroundImage:
-            "radial-gradient(60% 50% at 50% 45%, rgba(244,240,232,0.05), transparent 70%)",
         }}
       />
 
@@ -31,13 +27,13 @@ export default function About() {
             <p className="eyebrow mb-5">About Raj Entertainments</p>
 
             <h2 className="font-display text-4xl font-bold leading-[1.1] sm:text-5xl">
-              <span className="block text-bone">Where Passion</span>
-              <span className="block">
+              <span className="block text-ink">Where Passion</span>
+              <span className="block text-ink">
                 Meets <span className="text-crimson">Perfection</span>
               </span>
             </h2>
 
-            <p className="mt-6 text-sm leading-relaxed text-bone-muted sm:text-base">
+            <p className="mt-6 text-sm leading-relaxed text-ink/75 sm:text-base">
               Raj Entertainments is a full-service event management and
               entertainment company dedicated to creating magical
               experiences. With creativity, flawless execution, and
@@ -54,23 +50,35 @@ export default function About() {
             <Monogram />
           </div>
 
-          <div className="flex flex-col divide-y divide-ink-line">
-            {STATS.map((stat) => (
-              <div key={stat.label} className="flex items-center gap-4 py-6 first:pt-0 last:pb-0">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-crimson/40 text-crimson">
-                  <StatIcon name={stat.icon} />
-                </span>
-                <div>
-                  <p className="font-display text-2xl font-bold text-bone">
-                    {stat.value}
-                  </p>
-                  <p className="mt-0.5 text-[11px] font-medium uppercase tracking-widest2 text-bone-muted">
-                    {stat.label}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
+          <div className="flex flex-col">
+  {STATS.map((stat, index) => (
+    <div
+      key={stat.label}
+      className="relative flex items-center gap-4 py-7"
+    >
+      {/* Divider */}
+      {index !== STATS.length - 1 && (
+        <span className="absolute left-[68px] right-0 bottom-0 h-px bg-[#DCC9B0]" />
+      )}
+
+      {/* Icon */}
+      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#C79A5D]/50 bg-white text-crimson shadow-[0_6px_18px_rgba(0,0,0,.06)]">
+        <StatIcon name={stat.icon} />
+      </span>
+
+      {/* Text */}
+      <div>
+        <p className="font-display text-2xl font-bold text-ink">
+          {stat.value}
+        </p>
+
+        <p className="mt-1 text-[11px] uppercase tracking-[0.22em] text-ink/70">
+          {stat.label}
+        </p>
+      </div>
+    </div>
+  ))}
+</div>
         </div>
       </div>
     </section>
@@ -82,8 +90,19 @@ function Monogram() {
     <div className="relative flex h-[420px] w-[420px] items-center justify-center sm:h-[480px] sm:w-[480px] lg:h-[520px] lg:w-[520px]">
       <svg
         viewBox="0 0 300 300"
-        className="absolute inset-0 h-full w-full animate-[spin_22s_linear_infinite] text-bone-muted"
+        className="absolute inset-0 h-full w-full animate-[spin_22s_linear_infinite] text-gold"
       >
+        <circle
+          cx="150"
+          cy="150"
+          r="120"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1"
+          strokeDasharray="1 6"
+          strokeLinecap="round"
+          opacity="0.5"
+        />
         <defs>
           <path
             id="monogram-ring"
@@ -97,11 +116,9 @@ function Monogram() {
         </text>
       </svg>
 
-      <span className="absolute bottom-8 right-12 h-2 w-2 rotate-45 bg-crimson" />
-
       <span
         aria-hidden="true"
-        className="absolute select-none font-display text-[18rem] font-black leading-none text-bone/[0.06] sm:text-[21rem] lg:text-[23rem]"
+        className="absolute select-none font-display text-[18rem] font-black leading-none text-ink/[0.05] sm:text-[21rem] lg:text-[23rem]"
       >
         R
       </span>
@@ -110,13 +127,17 @@ function Monogram() {
         aria-hidden="true"
         className="relative select-none bg-clip-text font-display text-[18rem] font-black leading-none text-transparent sm:text-[21rem] lg:text-[23rem]"
         style={{
-          backgroundImage: "url('/monogram-photo.png')",
+          backgroundImage: `
+            linear-gradient(rgba(122, 31, 28, 0.9), rgba(122, 31, 28, 0.9)),
+            url('/monogram-photo.png')
+          `,
+          backgroundBlendMode: "multiply",
           backgroundSize: "cover",
           backgroundPosition: "center 35%",
           WebkitBackgroundClip: "text",
           filter:
-            "grayscale(1) contrast(1.4) brightness(1.1) drop-shadow(0 18px 30px rgba(0,0,0,0.55))",
-          WebkitTextStroke: "2px rgba(244, 240, 232, 0.3)",
+            "contrast(1.1) brightness(1.1) saturate(1.3) drop-shadow(0 18px 30px rgba(122,31,28,.22))",
+          WebkitTextStroke: "2px rgba(248,241,228,.8)",
         }}
       >
         R
@@ -144,12 +165,7 @@ function StatIcon({ name }) {
   if (name === "star") {
     return (
       <svg {...common}>
-        <path
-          d="M12 2.5L14.9 9.2L22 9.9L16.6 14.6L18.3 21.5L12 17.7L5.7 21.5L7.4 14.6L2 9.9L9.1 9.2L12 2.5Z"
-          stroke="currentColor"
-          strokeWidth="1.4"
-          strokeLinejoin="round"
-        />
+        <path d="M12 2.5L14.9 9.2L22 9.9L16.6 14.6L18.3 21.5L12 17.7L5.7 21.5L7.4 14.6L2 9.9L9.1 9.2L12 2.5Z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
       </svg>
     );
   }
@@ -157,30 +173,15 @@ function StatIcon({ name }) {
     return (
       <svg {...common}>
         <circle cx="9" cy="8.5" r="3" stroke="currentColor" strokeWidth="1.4" />
-        <path
-          d="M3.5 20c0-3.3 2.5-6 5.5-6s5.5 2.7 5.5 6"
-          stroke="currentColor"
-          strokeWidth="1.4"
-          strokeLinecap="round"
-        />
+        <path d="M3.5 20c0-3.3 2.5-6 5.5-6s5.5 2.7 5.5 6" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
         <circle cx="16.5" cy="9" r="2.4" stroke="currentColor" strokeWidth="1.4" />
-        <path
-          d="M15 14.3c2.4.4 4.5 2.6 4.5 5.7"
-          stroke="currentColor"
-          strokeWidth="1.4"
-          strokeLinecap="round"
-        />
+        <path d="M15 14.3c2.4.4 4.5 2.6 4.5 5.7" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
       </svg>
     );
   }
   return (
     <svg {...common}>
-      <path
-        d="M12 20.5C8 17.5 3.5 14.2 3.5 9.8C3.5 7 5.7 4.8 8.4 4.8C10 4.8 11.3 5.6 12 6.8C12.7 5.6 14 4.8 15.6 4.8C18.3 4.8 20.5 7 20.5 9.8C20.5 14.2 16 17.5 12 20.5Z"
-        stroke="currentColor"
-        strokeWidth="1.4"
-        strokeLinejoin="round"
-      />
+      <path d="M12 20.5C8 17.5 3.5 14.2 3.5 9.8C3.5 7 5.7 4.8 8.4 4.8C10 4.8 11.3 5.6 12 6.8C12.7 5.6 14 4.8 15.6 4.8C18.3 4.8 20.5 7 20.5 9.8C20.5 14.2 16 17.5 12 20.5Z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
     </svg>
   );
 }

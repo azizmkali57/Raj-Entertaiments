@@ -43,7 +43,9 @@ export default function Navbar() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ${
-        scrolled || menuOpen ? "bg-ink/95 backdrop-blur-md" : "bg-transparent"
+        scrolled || menuOpen
+          ? "border-b border-ink/8 bg-bone/80 shadow-luxury-sm backdrop-blur-md"
+          : "bg-transparent"
       }`}
     >
       <div className="container flex h-24 items-center justify-between">
@@ -57,7 +59,7 @@ export default function Navbar() {
           <img
             src="/raj-evernt-logo.png"
             alt="Raj Events Logo"
-            className="h-16 w-auto object-contain"
+            className="h-20 w-auto object-contain"
           />
         </Link>
 
@@ -70,7 +72,7 @@ export default function Navbar() {
               className={`group relative pb-1 text-[13px] font-medium uppercase tracking-[0.18em] transition-colors duration-300 ${
                 isActive(link.href)
                   ? "text-crimson"
-                  : "text-bone/80 hover:text-bone"
+                  : "text-ink hover:text-crimson"
               }`}
             >
               {link.label}
@@ -100,17 +102,17 @@ export default function Navbar() {
           className="relative z-[60] flex h-10 w-10 flex-col items-center justify-center gap-1.5 transition-colors duration-300 hover:border-crimson/50 lg:hidden"
         >
           <span
-            className={`h-[1.5px] w-5 bg-bone transition-transform duration-300 ${
+            className={`h-[1.5px] w-5 bg-ink transition-transform duration-300 ${
               menuOpen ? "translate-y-[7px] rotate-45" : ""
             }`}
           />
           <span
-            className={`h-[1.5px] w-5 bg-bone transition-opacity duration-300 ${
+            className={`h-[1.5px] w-5 bg-ink transition-opacity duration-300 ${
               menuOpen ? "opacity-0" : "opacity-100"
             }`}
           />
           <span
-            className={`h-[1.5px] w-5 bg-bone transition-transform duration-300 ${
+            className={`h-[1.5px] w-5 bg-ink transition-transform duration-300 ${
               menuOpen ? "-translate-y-[7px] -rotate-45" : ""
             }`}
           />
@@ -120,19 +122,19 @@ export default function Navbar() {
       {/* Dim overlay behind the drawer */}
       <div
         onClick={() => setMenuOpen(false)}
-        className={`fixed inset-0 z-40 transition-opacity duration-500 lg:hidden ${
+        className={`fixed inset-0 z-40 bg-ink/35 transition-opacity duration-500 lg:hidden ${
           menuOpen ? "opacity-100" : "pointer-events-none opacity-0 "
         }`}
       />
 
       {/* Mobile drawer — slides in from the right */}
       <aside
-        className={`fixed bg-black inset-y-0 right-0 z-50 flex h-full w-[82%] max-w-sm flex-col shadow-2xl transition-transform duration-500 ease-out lg:hidden ${
+        className={`fixed bg-white inset-y-0 right-0 z-50 flex h-full w-[82%] max-w-sm flex-col border-l border-ink/10 shadow-2xl transition-transform duration-500 ease-out lg:hidden ${
           menuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         {/* Drawer header with logo */}
-        <div className="flex items-center justify-start bg-black px-8 pt-8">
+        <div className="flex items-center justify-start bg-white px-8 pt-8">
           <img
             src="/raj-evernt-logo.png"
             alt="Raj Events Logo"
@@ -140,7 +142,7 @@ export default function Navbar() {
           />
         </div>
         {/* Links */}
-        <nav className="flex flex-col bg-black gap-5 px-8 pt-8">
+        <nav className="flex flex-col bg-white gap-5 px-8 pt-8">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.label}
@@ -148,7 +150,7 @@ export default function Navbar() {
               className={`text-sm font-medium uppercase tracking-widest2 transition-colors duration-300 ${
                 isActive(link.href)
                   ? "text-crimson"
-                  : "text-bone/85 hover:text-crimson"
+                  : "text-ink/75 hover:text-crimson"
               }`}
             >
               {link.label}
@@ -165,13 +167,13 @@ export default function Navbar() {
         </nav>
 
         {/* Spacer pushes contact block to the bottom */}
-        <div className="mt-auto space-y-4 bg-black  px-8 py-8">
+        <div className="mt-auto space-y-4 bg-white px-8 py-8">
           <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-crimson">
             Get In Touch
           </p>
           <Link
             href="tel:+919752054039"
-            className="flex items-center gap-3 text-sm text-bone/85 hover:text-crimson"
+            className="flex items-center gap-3 text-sm text-ink/75 hover:text-crimson"
           >
             <PhoneIcon />
             +91 97520 54039
@@ -179,13 +181,13 @@ export default function Navbar() {
 
           <Link
             href="mailto:Rajentertainment246@gmail.com"
-            className="flex items-center gap-3 text-sm text-bone/85 hover:text-crimson"
+            className="flex items-center gap-3 text-sm text-ink/75 hover:text-crimson"
           >
             <MailIcon />
             Rajentertainment246@gmail.com
           </Link>
 
-          <div className="flex items-start gap-3 text-sm text-bone/70">
+          <div className="flex items-start gap-3 text-sm text-ink/60">
             <PinIcon />
             <span>123 Celebration Street, Indore, MP</span>
           </div>

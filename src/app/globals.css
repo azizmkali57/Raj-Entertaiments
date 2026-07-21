@@ -17,7 +17,7 @@
   }
 
   ::selection {
-    @apply bg-crimson text-bone;
+    @apply bg-crimson text-[#F6F2EC];
   }
 
   ::-webkit-scrollbar {
@@ -27,7 +27,7 @@
     @apply bg-ink;
   }
   ::-webkit-scrollbar-thumb {
-    @apply bg-ink-raised;
+    @apply bg-champagne;
     border-radius: 999px;
   }
   ::-webkit-scrollbar-thumb:hover {
@@ -40,12 +40,48 @@
     @apply text-xs font-medium uppercase tracking-widest2 text-crimson;
   }
 
+  /* Primary CTA: warm burgundy, cream text (explicitly set — do not rely on
+     the `bone` token here, since it is now a dark text color and would be
+     unreadable on the burgundy fill). */
   .btn-primary {
-    @apply inline-flex items-center gap-3 bg-crimson px-8 py-4 text-xs font-semibold uppercase tracking-widest2 text-bone transition-colors duration-300 hover:bg-crimson-bright;
+    @apply inline-flex items-center gap-3 rounded-luxury-btn bg-crimson px-8 py-4 text-xs font-semibold uppercase tracking-widest2 text-[#F8F1E4] shadow-luxury-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-crimson-deep hover:shadow-luxury-hover;
   }
 
+  /* Secondary CTA: soft white, luxury hairline border, gentle hover — keeps
+     the original minimal underline-free footprint intact where it's used. */
   .btn-outline {
-    @apply inline-flex items-center gap-3 border-b border-bone/40 pb-1 text-xs font-semibold uppercase tracking-widest2 text-bone transition-colors duration-300 hover:border-crimson hover:text-crimson;
+  @apply inline-flex items-center gap-3 border-b border-ink/25 pb-1 text-xs font-semibold uppercase tracking-widest2 text-ink transition-colors duration-300 hover:border-crimson hover:text-crimson;
+}
+
+  /* Pill variant of the secondary CTA for spots that want a filled luxury button */
+  .btn-outline-pill {
+  @apply inline-flex items-center gap-3 rounded-luxury-btn border border-ink-line bg-white px-8 py-4 text-xs font-semibold uppercase tracking-widest2 text-ink shadow-luxury-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-gold hover:text-crimson hover:shadow-luxury;
+}
+
+  /* Floating glass navbar shell */
+  .navbar-glass {
+    @apply border border-ink-line bg-white/70 shadow-luxury-sm backdrop-blur-xl;
+  }
+
+  /* Reusable luxury card surface */
+  .card-luxury {
+    @apply rounded-luxury border border-ink-line bg-white shadow-luxury-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-luxury;
+  }
+
+  /* Subtle paper/grain texture overlay, low opacity, warm-toned */
+  .bg-luxury-grain {
+    background-image: theme("backgroundImage.grain");
+    background-size: 220px 220px;
+    opacity: 0.04;
+    mix-blend-mode: multiply;
+  }
+
+  /* Soft marble-like wash used behind hero/about panels */
+  .bg-luxury-marble {
+    background-image:
+      radial-gradient(60% 45% at 20% 20%, rgba(216, 177, 106, 0.10), transparent 70%),
+      radial-gradient(50% 40% at 85% 15%, rgba(159, 29, 32, 0.06), transparent 70%),
+      radial-gradient(70% 60% at 50% 100%, rgba(199, 154, 93, 0.10), transparent 70%);
   }
 }
 

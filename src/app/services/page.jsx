@@ -43,6 +43,9 @@ import {
   Trophy,
   Mic as MicIcon,
   Award,
+  Clapperboard,
+  Film,
+  Scissors,
 } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -106,14 +109,24 @@ const staggerContainer = (staggerChildren = 0.12, delayChildren = 0) => ({
 
 const viewport = { once: true, margin: "-100px" };
 
+/* ================================================================== */
+/*  SHARED — SectionHeading now supports a `theme` prop so it can sit  */
+/*  on either a light (bone/white) or dark (ink) section background.   */
+/* ================================================================== */
+
 function SectionHeading({
   eyebrow,
   title,
   highlight,
   description,
   align = "left",
+  theme = "light",
 }) {
   const isCenter = align === "center";
+  const isDark = theme === "dark";
+  const titleColor = isDark ? "text-bone" : "text-ink";
+  const descColor = isDark ? "text-bone-muted" : "text-ink/60";
+
   return (
     <div className={isCenter ? "mx-auto max-w-2xl text-center" : "max-w-xl"}>
       {eyebrow && (
@@ -135,7 +148,7 @@ function SectionHeading({
           initial="hidden"
           whileInView="visible"
           viewport={viewport}
-          className="font-display text-4xl leading-[1.1] text-bone sm:text-5xl lg:text-6xl"
+          className={`font-display text-4xl leading-[1.1] ${titleColor} sm:text-5xl lg:text-6xl`}
         >
           {title}{" "}
           {highlight && <span className="text-crimson">{highlight}</span>}
@@ -148,7 +161,7 @@ function SectionHeading({
           initial="hidden"
           whileInView="visible"
           viewport={viewport}
-          className="mt-5 text-sm leading-relaxed text-bone-muted sm:text-base"
+          className={`mt-5 text-sm leading-relaxed ${descColor} sm:text-base`}
         >
           {description}
         </motion.p>
@@ -182,7 +195,7 @@ function AnimatedButton({
   const base =
     variant === "primary"
       ? "group relative inline-flex items-center gap-3 overflow-hidden bg-crimson px-8 py-4 text-xs font-semibold uppercase tracking-widest2 text-bone shadow-md shadow-crimson/20 transition-shadow duration-300 hover:shadow-xl hover:shadow-crimson/40"
-      : "group relative inline-flex items-center gap-3 border border-bone/25 px-8 py-4 text-xs font-semibold uppercase tracking-widest2 text-bone transition-colors duration-300 hover:border-crimson hover:text-crimson";
+      : "group relative inline-flex items-center gap-3 border border-ink/20 px-8 py-4 text-xs font-semibold uppercase tracking-widest2 text-ink transition-colors duration-300 hover:border-crimson hover:text-crimson";
 
   return (
     <motion.div
@@ -231,11 +244,11 @@ function StatCounter({ value, suffix = "", label, delay = 0 }) {
       transition={{ duration: 0.7, delay }}
       className="text-right"
     >
-      <div className="font-display text-3xl text-bone sm:text-4xl">
+      <div className="font-display text-3xl text-ink sm:text-4xl">
         {display}
         {suffix}
       </div>
-      <div className="mt-1 text-[11px] uppercase tracking-widest2 text-bone-muted">
+      <div className="mt-1 text-[11px] uppercase tracking-widest2 text-ink/55">
         {label}
       </div>
     </motion.div>
@@ -243,10 +256,16 @@ function StatCounter({ value, suffix = "", label, delay = 0 }) {
 }
 
 const HERO_STATS = [
-  { icon: Users, value: 500, suffix: "+", label: "Events" },
-  { icon: Trophy, value: 50, suffix: "+", label: "Talent Hunts" },
-  { icon: Star, value: 100, suffix: "+", label: "Celebrities" },
+  { icon: Users, value: 500, suffix: "+", label: "Models Launched" },
+  { icon: Trophy, value: 150, suffix: "+", label: "Productions" },
+  { icon: Star, value: 25, suffix: "+", label: "Cities Covered" },
 ];
+
+/* ================================================================== */
+/*  HERO — light theme: swapped the dark ink scrim for a soft bone/    */
+/*  cream wash so the hero reads bright and airy, matching the         */
+/*  homepage hero, instead of the previous black-gradient treatment.   */
+/* ================================================================== */
 
 function Hero() {
   const sectionRef = useRef(null);
@@ -275,30 +294,48 @@ function Hero() {
     <section
       ref={sectionRef}
       onMouseMove={handleMouseMove}
-      className="relative flex min-h-screen items-center overflow-hidden bg-ink"
+      className="relative flex min-h-screen items-center overflow-hidden bg-bone"
     >
       <motion.div
-        style={{
-          scale: bgScale,
-          opacity: bgOpacity,
-          x: parallaxX,
-          y: parallaxY,
-        }}
-        className="absolute inset-0"
-      >
-        <Image
-          src="/services/hero.png"
-          alt="Grand stage production"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
-      </motion.div>
+  style={{
+    scale: bgScale,
+    opacity: bgOpacity,
+    x: parallaxX,
+    y: parallaxY,
+  }}
+  className="absolute inset-0"
+>
+  {/* Mobile / tablet crop */}
+  <Image
+    src="/services/mobile-bg.png"
+    alt="Model on set during a production shoot"
+    fill
+    priority
+    sizes="100vw"
+    className="object-cover object-[70%_center] lg:hidden"
+  />
+  {/* Desktop crop */}
+  <Image
+    src="/services/hero_bg.png"
+    alt="Model on set during a production shoot"
+    fill
+    priority
+    sizes="100vw"
+    className="hidden object-cover lg:block"
+  />
+</motion.div>
 
-      <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/70 to-ink/20" />
-      <div className="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-ink/40" />
-      <div className="absolute inset-0 bg-vignette" />
+      {/* Light cream scrim left-to-right so the headline/stats read
+    clearly over the photo, without turning the hero black. */}
+<div className="absolute inset-0 bg-gradient-to-r from-bone via-bone/55 to-transparent lg:via-bone/40" />
+<div className="absolute inset-0 bg-gradient-to-t from-bone/60 via-transparent to-bone/10" />
+<div
+  className="
+    absolute inset-0
+    [background:radial-gradient(200%_70%_at_50%_0%,transparent_45%,rgba(250,247,240,0.55)_100%)]
+    lg:[background:radial-gradient(120%_100%_at_50%_0%,transparent_40%,rgba(250,247,240,0.65)_100%)]
+  "
+/>
 
       <motion.div style={{ y: contentY }} className="container relative z-10">
         <div className="grid items-end gap-16 lg:grid-cols-[1.3fr_0.7fr]">
@@ -318,7 +355,7 @@ function Hero() {
               variants={fadeUp}
               initial="hidden"
               animate="visible"
-              className="font-display text-5xl leading-[1.05] text-bone sm:text-6xl lg:text-7xl"
+              className="font-display text-5xl leading-[1.05] text-ink sm:text-6xl lg:text-7xl"
             >
               Where Talent
               <br />
@@ -332,11 +369,11 @@ function Hero() {
               variants={fadeUp}
               initial="hidden"
               animate="visible"
-              className="mt-7 max-w-md text-sm leading-relaxed text-bone-muted sm:text-base"
+              className="mt-7 max-w-md text-sm leading-relaxed text-ink/60 sm:text-base"
             >
-              From nurturing young talent to managing celebrity nights and
-              brand campaigns, we bring vision, precision and spectacle to
-              every stage.
+              From scouting and training models to producing full-scale
+              shoots and campaigns, we bring vision, precision and spectacle
+              to every frame.
             </motion.p>
 
             <motion.div
@@ -346,7 +383,7 @@ function Hero() {
               animate="visible"
               className="mt-10 flex items-center gap-8"
             >
-              <AnimatedButton variant="primary">Plan Your Event</AnimatedButton>
+              <AnimatedButton variant="primary">Start a Project</AnimatedButton>
               <div className="hidden items-center gap-3 sm:flex">
                 <motion.span
                   animate={{ y: [0, 8, 0] }}
@@ -355,11 +392,11 @@ function Hero() {
                     repeat: Infinity,
                     ease: "easeInOut",
                   }}
-                  className="flex h-9 w-6 items-start justify-center rounded-full border border-bone/30 p-1.5"
+                  className="flex h-9 w-6 items-start justify-center rounded-full border border-ink/25 p-1.5"
                 >
                   <span className="h-1.5 w-1.5 rounded-full bg-crimson" />
                 </motion.span>
-                <span className="text-[11px] uppercase tracking-widest2 text-bone-muted">
+                <span className="text-[11px] uppercase tracking-widest2 text-ink/55">
                   Scroll to Explore
                 </span>
               </div>
@@ -371,7 +408,7 @@ function Hero() {
             custom={2}
             initial="hidden"
             animate="visible"
-            className="flex flex-col gap-6 border-l border-bone/10 pl-8 lg:items-end lg:text-right"
+            className="flex flex-col gap-6 border-l border-ink/10 pl-8 lg:items-end lg:text-right"
           >
             {HERO_STATS.map((stat, i) => (
               <div
@@ -407,8 +444,7 @@ function SplitService({
   reverse = false,
 }) {
   return (
-    <section className="relative overflow-hidden bg-ink">
-      {/* FULL-BLEED BACKGROUND IMAGE */}
+    <section className="relative overflow-hidden bg-bone">
       <motion.div
         variants={fadeIn}
         initial="hidden"
@@ -425,22 +461,19 @@ function SplitService({
           style={{ objectPosition: reverse ? "80% center" : "20% center" }}
         />
 
-        {/* single continuous horizontal fade — no hard stops, no second layer */}
+        {/* Light cream scrim instead of the previous black/ink wash,
+            so the text panel sits on a soft bone backdrop. */}
         <div
           className="absolute inset-0"
           style={{
             background: reverse
-              ? "linear-gradient(to left, transparent 0%, transparent 30%, rgba(10,9,8,0.55) 48%, rgba(10,9,8,0.92) 62%, #0a0908 78%)"
-              : "linear-gradient(to right, transparent 0%, transparent 30%, rgba(10,9,8,0.55) 48%, rgba(10,9,8,0.92) 62%, #0a0908 78%)",
+              ? "linear-gradient(to left, transparent 0%, transparent 30%, rgba(250,247,240,0.55) 48%, rgba(250,247,240,0.92) 62%, #faf7f0 78%)"
+              : "linear-gradient(to right, transparent 0%, transparent 30%, rgba(250,247,240,0.55) 48%, rgba(250,247,240,0.92) 62%, #faf7f0 78%)",
           }}
         />
-        {/* gentle overall darkening so the image side isn't too bright either */}
-        <div className="absolute inset-0 bg-ink/20" />
-        {/* subtle top/bottom vignette for depth */}
-        <div className="absolute inset-0 bg-gradient-to-b from-ink/30 via-transparent to-ink/40" />
+        <div className="absolute inset-0 bg-gradient-to-b from-bone/40 via-bone/10 to-transparent" />
       </motion.div>
 
-      {/* CONTENT */}
       <div className="container relative z-10">
         <div className="grid min-h-[560px] grid-cols-1 items-center py-16 lg:grid-cols-2 lg:py-0">
           <div
@@ -449,10 +482,9 @@ function SplitService({
           />
 
           <div className={`relative ${reverse ? "lg:order-1" : "lg:order-2"}`}>
-            {/* ghost number */}
             <span
               aria-hidden
-              className="pointer-events-none absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/3 select-none font-display text-[220px] leading-none text-bone/[0.06] sm:text-[280px] lg:text-[340px]"
+              className="pointer-events-none absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/3 select-none font-display text-[220px] leading-none text-ink/[0.06] sm:text-[280px] lg:text-[340px]"
             >
               {number}
             </span>
@@ -475,7 +507,7 @@ function SplitService({
                 initial="hidden"
                 whileInView="visible"
                 viewport={viewport}
-                className="font-display text-4xl leading-[1.1] text-bone sm:text-5xl lg:text-6xl"
+                className="font-display text-4xl leading-[1.1] text-ink sm:text-5xl lg:text-6xl"
               >
                 {title}
               </motion.h2>
@@ -486,7 +518,7 @@ function SplitService({
                 initial="hidden"
                 whileInView="visible"
                 viewport={viewport}
-                className="mt-5 max-w-md text-sm leading-relaxed text-bone-muted sm:text-base"
+                className="mt-5 max-w-md text-sm leading-relaxed text-ink/60 sm:text-base"
               >
                 {description}
               </motion.p>
@@ -502,7 +534,7 @@ function SplitService({
                   <motion.li
                     key={item}
                     variants={fadeUp}
-                    className="flex items-center gap-2.5 text-sm text-bone-muted"
+                    className="flex items-center gap-2.5 text-sm text-ink/60"
                   >
                     <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-crimson" />
                     {item}
@@ -529,94 +561,97 @@ function SplitService({
 }
 
 /* ================================================================== */
-/*  SECTION 01 — KIDS TALENT HUNT                                      */
+/*  SECTION 01 — MODELING                                              */
 /* ================================================================== */
 
-function KidsTalentHuntSection() {
+function ModelingSection() {
   return (
     <SplitService
       number="01"
       eyebrow="Talent"
-      title="Kids Talent Hunt"
-      description="We give young stars their first stage — talent hunt shows designed to discover, nurture and celebrate the next generation of performers."
+      title="Modeling"
+      description="We scout, train and showcase talent ready to command any runway, screen or campaign — building careers, not just castings."
       items={[
-        "Singing Competitions",
-        "Dance Competitions",
-        "Talent Auditions",
-        "Kids Fashion Shows",
-        "Reality-Style Contests",
-        "Prize Distribution Ceremonies",
-        "School & Community Talent Fests",
+        "Talent Scouting",
+        "Portfolio Shoots",
+        "Runway & Ramp Walks",
+        "Fashion Show Casting",
+        "Print & Editorial Modeling",
+        "Grooming & Styling",
+        "Brand Ambassador Placements",
       ]}
       ctaLabel="View Gallery"
-      image="/services/kids_fashion_show.png"
+      image="/services/child-modelling.png"
     />
   );
 }
 
 /* ================================================================== */
-/*  SECTION 02 — CORPORATE EVENTS                                      */
+/*  SECTION 02 — PRODUCTION HOUSE                                      */
 /* ================================================================== */
 
-function CorporateSection() {
+function ProductionHouseSection() {
   return (
     <SplitService
       number="02"
-      eyebrow="Corporate"
-      title="Corporate Events"
-      description="Professional experiences that leave lasting impressions — engineered for brand impact and flawless production value."
+      eyebrow="Production"
+      title="Production House"
+      description="Full-scale production from concept to final cut — engineered for creative impact and flawless execution on every shoot."
       items={[
-        "Conferences",
-        "Award Nights",
-        "Product Launches",
-        "Annual Meets",
-        "Brand Activations",
-        "Dealer & Channel Partner Meets",
+        "Brand Campaigns",
+        "Ad Films & Commercials",
+        "Music Videos",
+        "Studio & Location Shoots",
+        "Photography & Videography",
+        "Post-Production & Editing",
       ]}
       ctaLabel="Enquire Now"
-      image="/services/live-events.png"
+      image="/services/production-section.png"
       reverse
     />
   );
 }
 
 /* ================================================================== */
-/*  SECTION — AWARD SHOWS                                              */
+/*  SECTION — MODELING SERVICES                                        */
+/*  Light overall page — bone background. Gets a top hairline + a      */
+/*  soft marble wash so it reads as a distinct band right under the    */
+/*  Hero/Modeling panels above it.                                     */
 /* ================================================================== */
 
-const AWARD_SHOW_SERVICES = [
-  { icon: Lightbulb, label: "Lighting" },
-  { icon: MonitorPlay, label: "LED" },
-  { icon: Volume2, label: "Sound" },
-  { icon: Layers, label: "Stage" },
-  { icon: Trophy, label: "Trophies" },
-  { icon: Camera, label: "Photography" },
+const MODELING_SERVICES = [
+  { icon: PersonStanding, label: "Ramp Walk" },
+  { icon: Camera, label: "Portfolio" },
+  { icon: Wand2, label: "Styling" },
+  { icon: Sparkles, label: "Grooming" },
+  { icon: Trophy, label: "Casting" },
+  { icon: Award, label: "Endorsements" },
 ];
 
-const AWARD_SHOW_IMAGES = [
+const MODELING_IMAGES = [
   {
-    src: "/services/corporte-event.png",
-    title: "Award Ceremonies",
+    src: "/gallery/ram-walk.png",
+    title: "Runway Shows",
   },
   {
-    src: "/services/entertainment.png",
-    title: "Red Carpet Nights",
+    src: "/gallery/protfolio.png",
+    title: "Portfolio Shoots",
   },
   {
-    src: "/services/event-management.png",
-    title: "Trophy Presentations",
+    src: "/gallery/styling.png",
+    title: "Editorial Shoots",
   },
   {
-    src: "/services/social-events.png",
-    title: "Celebrity Hosted Shows",
+    src: "/gallery/grooming.png",
+    title: "Brand Campaigns",
   },
   {
-    src: "/services/wedding.png",
-    title: "Felicitation Events",
+    src: "/gallery/casting.png",
+    title: "Fashion Shows",
   },
 ];
 
-function AwardShows() {
+function ModelingServices() {
   const trackRef = useRef(null);
   const [isPaused, setIsPaused] = useState(false);
 
@@ -644,32 +679,22 @@ function AwardShows() {
     track.scrollBy({ left: dir * 420, behavior: "smooth" });
   };
 
-  const loopedImages = [...AWARD_SHOW_IMAGES, ...AWARD_SHOW_IMAGES];
+  const loopedImages = [...MODELING_IMAGES, ...MODELING_IMAGES];
 
   return (
-    <section className="relative overflow-hidden py-10 sm:py-20 lg:py-10">
-      {/* ambient background, very subtle */}
-      <div className="absolute inset-0 opacity-10">
-        <Image
-          src="/contact/conatct-hero.png"
-          alt=""
-          fill
-          sizes="100vw"
-          className="object-cover"
-        />
-      </div>
-      <div className="absolute inset-0 bg-ink/40" />
+    <section className="relative overflow-hidden border-t border-ink/[0.06] bg-bone py-10 sm:py-20 lg:py-10">
+      <div className="absolute inset-0 bg-luxury-marble opacity-60" />
 
       <div className="container relative z-10">
         <SectionHeading
-          eyebrow="Recognition"
-          title="Award"
-          highlight="Shows"
-          description="Glittering nights that celebrate excellence, achievement and stardom."
+          eyebrow="Modeling"
+          title="What We"
+          highlight="Offer"
+          description="From first casting to the final walk, we handle every step of a model's journey."
           align="center"
+          theme="light"
         />
 
-        {/* horizontal service icons */}
         <motion.div
           variants={staggerContainer(0.08, 0.3)}
           initial="hidden"
@@ -677,7 +702,7 @@ function AwardShows() {
           viewport={viewport}
           className="mt-5 flex flex-wrap items-center justify-center gap-x-10 gap-y-6 sm:gap-x-14"
         >
-          {AWARD_SHOW_SERVICES.map((svc) => (
+          {MODELING_SERVICES.map((svc) => (
             <motion.div
               key={svc.label}
               variants={fadeUp}
@@ -687,14 +712,13 @@ function AwardShows() {
               <div className="flex h-12 w-12 items-center justify-center rounded-md text-crimson transition-all duration-300 group-hover:bg-crimson group-hover:text-bone">
                 <svc.icon size={30} />
               </div>
-              <span className="text-[11px] uppercase tracking-widest2 text-bone-muted transition-colors duration-300 group-hover:text-bone">
+              <span className="text-[11px] uppercase tracking-widest2 text-ink/55 transition-colors duration-300 group-hover:text-ink">
                 {svc.label}
               </span>
             </motion.div>
           ))}
         </motion.div>
 
-        {/* auto-scrolling slider */}
         <motion.div
           variants={fadeUp}
           custom={2}
@@ -726,18 +750,17 @@ function AwardShows() {
             ))}
           </div>
 
-          {/* arrow controls */}
           <button
             aria-label="Scroll left"
             onClick={() => scrollByAmount(-1)}
-            className="absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2 flex h-11 w-11 items-center justify-center rounded-full border border-bone/20 bg-ink/90 text-bone backdrop-blur-sm transition-colors duration-300 hover:border-crimson hover:text-crimson"
+            className="absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2 flex h-11 w-11 items-center justify-center rounded-full border border-ink/15 bg-white/90 text-ink shadow-luxury-sm backdrop-blur-sm transition-colors duration-300 hover:border-crimson hover:text-crimson"
           >
             <ChevronLeft size={18} />
           </button>
           <button
             aria-label="Scroll right"
             onClick={() => scrollByAmount(1)}
-            className="absolute right-0 top-1/2 -translate-x-1/2 -translate-y-1/2 flex h-11 w-11 items-center justify-center rounded-full border border-bone/20 bg-ink/90 text-bone backdrop-blur-sm transition-colors duration-300 hover:border-crimson hover:text-crimson"
+            className="absolute right-0 top-1/2 -translate-x-1/2 -translate-y-1/2 flex h-11 w-11 items-center justify-center rounded-full border border-ink/15 bg-white/90 text-ink shadow-luxury-sm backdrop-blur-sm transition-colors duration-300 hover:border-crimson hover:text-crimson"
           >
             <ChevronRight size={18} />
           </button>
@@ -748,29 +771,32 @@ function AwardShows() {
 }
 
 /* ================================================================== */
-/*  SECTION — CELEBRITY MANAGEMENT                                     */
+/*  SECTION — PRODUCTION OFFERINGS                                     */
+/*  Light, on brand with the client's preference. Uses plain white     */
+/*  (not bone) so it reads as a distinct band from ModelingServices    */
+/*  above it rather than blending into one long beige stretch.         */
 /* ================================================================== */
 
-const CELEBRITY_MANAGEMENT_SERVICES = [
+const PRODUCTION_OFFERINGS = [
   {
-    title: "Celebrity Booking",
-    image: "/services/entertainment.png",
+    title: "Ad Films",
+    image: "/gallery/ad-flims.png",
   },
   {
-    title: "Event Appearances",
-    image: "/services/live-events.png",
+    title: "Music Videos",
+    image: "/gallery/music-shoot.png",
   },
   {
-    title: "Brand Endorsements",
-    image: "/services/social-events.png",
+    title: "Brand Films",
+    image: "/gallery/brand-films.png",
   },
   {
-    title: "Meet & Greet",
-    image: "/services/wedding.png",
+    title: "Studio Shoots",
+    image: "/gallery/casting.png",
   },
 ];
 
-function CelebrityCard({ title, image, i }) {
+function ProductionCard({ title, image, i }) {
   return (
     <motion.div
       custom={i}
@@ -787,7 +813,7 @@ function CelebrityCard({ title, image, i }) {
         sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 20vw"
         className="object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/20 to-transparent transition-colors duration-500 group-hover:from-ink/95" />
+      <div className="absolute inset-0 bg-gradient-to-t from-ink/75 via-ink/10 to-transparent transition-colors duration-500 group-hover:from-ink/90" />
       <div className="absolute inset-0 border border-transparent transition-colors duration-500 group-hover:border-crimson/40" />
 
       <div className="absolute bottom-5 left-5 right-5 flex items-center gap-2">
@@ -800,12 +826,11 @@ function CelebrityCard({ title, image, i }) {
   );
 }
 
-function CelebrityManagement() {
+function ProductionOfferings() {
   return (
-    <section className="relative overflow-hidden bg-ink py-10 sm:py-20 lg:py-10">
+    <section className="relative overflow-hidden bg-white py-10 sm:py-20 lg:py-10">
       <div className="container relative z-10">
         <div className="grid gap-10 lg:grid-cols-[260px_1fr] lg:items-center lg:gap-12">
-          {/* HEADING */}
           <div>
             <motion.span
               custom={0}
@@ -815,7 +840,7 @@ function CelebrityManagement() {
               viewport={viewport}
               className="eyebrow mb-4 block"
             >
-              Celebrity
+              Production
             </motion.span>
             <motion.h2
               custom={1}
@@ -823,15 +848,14 @@ function CelebrityManagement() {
               initial="hidden"
               whileInView="visible"
               viewport={viewport}
-              className="font-display text-4xl leading-[1.1] text-bone sm:text-5xl lg:text-[60px]"
+              className="font-display text-4xl leading-[1.1] text-ink sm:text-5xl lg:text-[60px]"
             >
-              Celebrity
+              What We
               <br />
-              Management
+              Produce
             </motion.h2>
           </div>
 
-          {/* CARD GRID */}
           <motion.div
             variants={staggerContainer(0.1, 0.15)}
             initial="hidden"
@@ -839,8 +863,8 @@ function CelebrityManagement() {
             viewport={viewport}
             className="grid grid-cols-2 gap-5 sm:gap-6 lg:grid-cols-4"
           >
-            {CELEBRITY_MANAGEMENT_SERVICES.map((item, i) => (
-              <CelebrityCard
+            {PRODUCTION_OFFERINGS.map((item, i) => (
+              <ProductionCard
                 key={item.title}
                 title={item.title}
                 image={item.image}
@@ -855,53 +879,54 @@ function CelebrityManagement() {
 }
 
 /* ================================================================== */
-/*  SECTION — BRAND PROMOTION                                          */
+/*  SECTION — BEHIND THE SCENES (currently unused/commented out in the */
+/*  page export below — left intact in case you re-enable it)          */
 /* ================================================================== */
 
-const PROMOTION_ACTIVITIES = [
+const BEHIND_THE_SCENES = [
   {
-    title: "Product Launch",
-    icon: Sparkles,
+    title: "Pre-Production",
+    icon: Clapperboard,
     image: "/services/live-events.png",
   },
   {
-    title: "Roadshows",
-    icon: Truck,
+    title: "On-Set Direction",
+    icon: Camera,
     image: "/services/social-events.png",
   },
   {
-    title: "Mall Activation",
-    icon: Building2,
+    title: "Lighting Setup",
+    icon: Lightbulb,
     image: "/services/wedding.png",
   },
   {
-    title: "Influencer Campaign",
-    icon: MicIcon,
+    title: "Wardrobe & Styling",
+    icon: Palette,
     image: "/services/corporte-event.png",
   },
   {
-    title: "Sampling Drive",
-    icon: Package,
+    title: "Sound Design",
+    icon: Volume2,
     image: "/services/event-management.png",
   },
   {
-    title: "Exhibition Stall",
-    icon: Layers,
+    title: "Post-Production",
+    icon: Scissors,
     image: "/services/wedding.png",
   },
   {
-    title: "Digital Campaign",
-    icon: MonitorPlay,
+    title: "Final Delivery",
+    icon: Film,
     image: "/services/social-events.png",
   },
   {
-    title: "Retail Branding",
-    icon: Palette,
+    title: "Digital Distribution",
+    icon: MonitorPlay,
     image: "/services/live-events.png",
   },
 ];
 
-function BrandPromotionHero() {
+function BehindTheScenesHero() {
   return (
     <motion.div
       variants={slideInLeft}
@@ -912,21 +937,21 @@ function BrandPromotionHero() {
       <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm sm:aspect-[16/10] lg:aspect-[4/3]">
         <Image
           src="/services/corporte-event.png"
-          alt="Brand Promotion"
+          alt="Behind the scenes of a Raj Entertainments production"
           fill
           sizes="(max-width: 1024px) 100vw, 50vw"
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-transparent" />
         <span className="absolute font-bold left-6 bottom-6 font-display text-2xl text-crimson sm:text-3xl">
-          Brand Promotion
+          Behind The Scenes
         </span>
       </div>
     </motion.div>
   );
 }
 
-function PromotionCard({ title, image, i }) {
+function BehindTheScenesCard({ title, image, i }) {
   return (
     <motion.div
       custom={i}
@@ -940,7 +965,7 @@ function PromotionCard({ title, image, i }) {
         sizes="(max-width: 640px) 25vw, 12vw"
         className="object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/10 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/20 to-transparent" />
       <span className="absolute bottom-3 left-3 right-3 text-[11px] uppercase tracking-widest2 text-bone">
         {title}
       </span>
@@ -948,7 +973,7 @@ function PromotionCard({ title, image, i }) {
   );
 }
 
-function PromotionActivities() {
+function BehindTheScenesGrid() {
   return (
     <motion.div
       variants={slideInRight}
@@ -956,7 +981,7 @@ function PromotionActivities() {
       whileInView="visible"
       viewport={viewport}
     >
-      <span className="eyebrow text-xl mb-6 block">Activities</span>
+      <span className="eyebrow text-xl mb-6 block">Our Process</span>
 
       <motion.div
         variants={staggerContainer(0.06, 0.15)}
@@ -965,8 +990,8 @@ function PromotionActivities() {
         viewport={viewport}
         className="grid grid-cols-4 gap-3 sm:gap-4"
       >
-        {PROMOTION_ACTIVITIES.map((act, i) => (
-          <PromotionCard
+        {BEHIND_THE_SCENES.map((act, i) => (
+          <BehindTheScenesCard
             key={act.title}
             title={act.title}
             image={act.image}
@@ -978,43 +1003,44 @@ function PromotionActivities() {
   );
 }
 
-function BrandPromotion() {
-  return (
-    <section className="relative overflow-hidden bg-ink py-16 sm:py-20 lg:py-[120px]">
-      <div className="container relative z-10">
-        <div className="grid gap-14 lg:grid-cols-2 lg:gap-16">
-          <BrandPromotionHero />
-          <PromotionActivities />
-        </div>
-      </div>
-    </section>
-  );
-}
+// function BehindTheScenes() {
+//   return (
+//     <section className="relative overflow-hidden bg-ink py-16 sm:py-20 lg:py-[120px]">
+//       <div className="container relative z-10">
+//         <div className="grid gap-14 lg:grid-cols-2 lg:gap-16">
+//           <BehindTheScenesHero />
+//           <BehindTheScenesGrid />
+//         </div>
+//       </div>
+//     </section>
+//   );
+// }
 
 /* ================================================================== */
 /*  SECTION — WHY CHOOSE RAJ                                           */
+/*  Light band before the footer.                                      */
 /* ================================================================== */
 
 const WHY_CHOOSE_ITEMS = [
   {
     icon: Package,
-    title: "Premium Planning",
-    description: "Thoughtful planning and flawless execution for every detail.",
+    title: "Trained Talent",
+    description: "Models styled and coached to be ready for any brief.",
   },
   {
     icon: Users,
-    title: "Creative Team",
-    description: "Passionate designers and planners with a creative edge.",
+    title: "Creative Crew",
+    description: "Directors, stylists and editors with a sharp creative edge.",
   },
   {
     icon: Heart,
-    title: "Timely Execution",
-    description: "On-time delivery with precision and perfection.",
+    title: "Timely Delivery",
+    description: "On-time delivery of every shoot and final cut, guaranteed.",
   },
   {
     icon: Flag,
-    title: "End-to-End Management",
-    description: "From concept to celebration, we handle it all.",
+    title: "End-to-End Production",
+    description: "From casting to final edit, we handle it all.",
   },
 ];
 
@@ -1023,14 +1049,14 @@ function WhyChooseCard({ icon: Icon, title, description, i }) {
     <motion.div
       custom={i}
       variants={fadeUp}
-      className="group flex items-start gap-4 border border-bone/10 bg-bone/[0.02] p-6 transition-colors duration-300 hover:border-crimson/40 sm:p-7"
+      className="group flex items-start gap-4 border border-ink/10 bg-white/60 p-6 shadow-luxury-sm transition-colors duration-300 hover:border-crimson/40 sm:p-7"
     >
-      <div className="flex h-11 w-11 shrink-0 items-center justify-center  text-crimson transition-all duration-300 group-hover:bg-crimson group-hover:text-bone">
+      <div className="flex h-11 w-11 shrink-0 items-center justify-center text-crimson transition-all duration-300 group-hover:bg-crimson group-hover:text-bone">
         <Icon size={32} />
       </div>
       <div>
-        <h3 className="font-display text-base text-bone sm:text-lg">{title}</h3>
-        <p className="mt-2 text-xs leading-relaxed text-bone-muted sm:text-sm">
+        <h3 className="font-display text-base text-ink sm:text-lg">{title}</h3>
+        <p className="mt-2 text-xs leading-relaxed text-ink/60 sm:text-sm">
           {description}
         </p>
       </div>
@@ -1040,9 +1066,9 @@ function WhyChooseCard({ icon: Icon, title, description, i }) {
 
 function WhyChoose() {
   return (
-    <section className="relative overflow-hidden bg-ink-soft py-10 sm:py-20 lg:py-10">
+    <section className="relative overflow-hidden bg-white py-10 sm:py-20 lg:py-10">
       <div className="container relative z-10">
-        <SectionHeading eyebrow="Why Choose RAJ" align="center" />
+        <SectionHeading eyebrow="Why Choose RAJ" align="center" theme="light" />
 
         <motion.div
           variants={staggerContainer(0.1, 0.2)}
@@ -1067,15 +1093,20 @@ function WhyChoose() {
 }
 
 export default function ServicesPage() {
+  // Page shell is BONE throughout — Hero and the two photo-driven split
+  // panels (Modeling, Production House) now use a light cream scrim over
+  // their photos for text contrast instead of a dark/ink one, so the
+  // whole page reads as one continuous light, premium palette matching
+  // the homepage.
   return (
-    <main className="bg-ink">
+    <main className="bg-bone">
       <Navbar />
       <Hero />
-      <KidsTalentHuntSection />
-      <CorporateSection />
-      <AwardShows />
-      <CelebrityManagement />
-      <BrandPromotion />
+      <ModelingSection />
+      <ProductionHouseSection />
+      <ModelingServices />
+      <ProductionOfferings />
+      {/* <BehindTheScenes /> */}
       <WhyChoose />
       <Footer />
     </main>

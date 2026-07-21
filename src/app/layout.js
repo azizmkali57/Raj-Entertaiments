@@ -23,7 +23,7 @@ const serif = Cormorant_Garamond({
 });
 
 export const metadata = {
-  title: "Raj Entertainments | Extraordinary Event Experiences",
+  title: "Raj Entertainments",
   description:
     "Raj Entertainments is a full-service event management and entertainment company crafting weddings, corporate events, live shows, and unforgettable celebrations.",
 };

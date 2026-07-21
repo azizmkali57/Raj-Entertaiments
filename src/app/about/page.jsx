@@ -27,15 +27,20 @@ import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
-const BG = "#090909";
-const BG_SOFT = "#111111";
-const CARD = "#141414";
-const PRIMARY = "#D53B3B";
-const SECONDARY = "#A12025";
-const HEADING = "#F5F5F5";
-const PARA = "#A0A0A0";
-const BORDER = "rgba(255,255,255,0.08)";
-const GLOW = "rgba(213,59,59,.35)";
+/* ------------------------------------------------------------------ */
+/*  LIGHT THEME TOKENS                                                 */
+/* ------------------------------------------------------------------ */
+const BG = "#F4F0E8";
+const BG_SOFT = "#EDE5D6";
+const CARD = "#FFFFFF";
+const PRIMARY = "#C0342D";
+const SECONDARY = "#7A1F1C";
+const HEADING = "#0A0908";
+const PARA = "rgba(10,9,8,0.62)";
+const BORDER = "rgba(10,9,8,0.1)";
+const GLOW = "rgba(192,52,45,.28)";
+const CARD_TRANSLUCENT = "rgba(255,255,255,0.6)";
+const CARD_TRANSLUCENT_STRONG = "rgba(255,255,255,0.72)";
 
 const NOISE_BG =
   "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")";
@@ -43,86 +48,86 @@ const NOISE_BG =
 const FEATURES = [
   {
     icon: Sparkles,
-    title: "Creative Excellence",
-    desc: "Unique concepts crafted for extraordinary celebrations.",
+    title: "Runway Ready",
+    desc: "Trained talent styled and coached to command any stage.",
   },
   {
     icon: Shield,
-    title: "Flawless Execution",
-    desc: "Perfect planning with precision and elegance.",
+    title: "Full Production",
+    desc: "Concept to camera — every shoot and show handled end-to-end.",
   },
   {
     icon: Heart,
-    title: "Client First",
-    desc: "Every celebration revolves around your happiness.",
+    title: "Talent First",
+    desc: "We build careers, not just castings.",
   },
 ];
 
 const STATS = [
-  { icon: Star, value: 10, suffix: "+", label: "Years of Experience" },
-  { icon: Users, value: 500, suffix: "+", label: "Events Organized" },
-  { icon: Smile, value: 1000, suffix: "+", label: "Happy Clients" },
+  { icon: Star, value: 10, suffix: "+", label: "Years in the Industry" },
+  { icon: Users, value: 500, suffix: "+", label: "Models Launched" },
+  { icon: Smile, value: 150, suffix: "+", label: "Productions Delivered" },
   { icon: MapPin, value: 25, suffix: "+", label: "Cities Covered" },
-  { icon: Trophy, value: 100, suffix: "%", label: "Client Satisfaction" },
+  // { icon: Trophy, value: 100, suffix: "%", label: "Client Satisfaction" },
 ];
 
 const MILESTONES = [
   {
     year: "2016",
     title: "The Beginning",
-    desc: "Raj Entertainments was founded with a dream of creating unforgettable celebrations.",
-    img: "/services/entertainment.png",
+    desc: "Raj Entertainments was founded to give aspiring models a real platform.",
+    img: "/services/img2.jpg",
   },
   {
     year: "2017",
-    title: "First Milestone",
-    desc: "Successfully organized the first major event and gained recognition.",
+    title: "First Show",
+    desc: "Produced our first runway show and scouted our first roster of talent.",
     img: "/gallery/2017.jpg",
   },
   {
     year: "2018",
-    title: "Expanding Horizons",
-    desc: "Expanded services into corporate events, concerts and premium weddings.",
+    title: "Production House Launch",
+    desc: "Expanded into full-scale production — shoots, shows and campaigns.",
     img: "/gallery/2018.jpg",
   },
   {
     year: "2019",
     title: "Industry Recognition",
-    desc: "Recognized as one of Central India's leading event management companies.",
+    desc: "Recognized as a leading modeling and production house in Central India.",
     img: "/gallery/2019.webp",
   },
   {
     year: "2020+",
     title: "The Future Ahead",
-    desc: "Continuing to innovate and create extraordinary experiences.",
-    img: "/services/corporte-event.png",
+    desc: "Continuing to discover new talent and produce bolder work.",
+    img: "/services/img1.jpg",
   },
 ];
 
 const LEADERS = [
   {
     name: "Raj Sharma",
-    role: "Client Relations",
-    desc: "She ensures every client feels heard, valued and delighted.",
-    img: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=500&auto=format&fit=crop",
+    role: "Founder",
+    desc: "Founder of Raj Entertenmaints.",
+    img: "/owner.jpeg",
   },
 ];
 
 const MISSION_ITEMS = [
   {
     icon: Target,
-    title: "Deliver Excellence",
-    desc: "To deliver exceptional events that exceed expectations.",
+    title: "Discover Talent",
+    desc: "To find and shape models who stand out on any runway or screen.",
   },
   {
     icon: Heart,
     title: "Build Lasting Relationships",
-    desc: "To build lasting relationships based on trust and excellence.",
+    desc: "To build lasting relationships with talent and clients based on trust.",
   },
   {
     icon: Rocket,
-    title: "Innovate Continuously",
-    desc: "To innovate and set new benchmarks in the event industry.",
+    title: "Produce Bold Work",
+    desc: "To innovate and set new benchmarks in modeling and production.",
   },
 ];
 
@@ -158,17 +163,17 @@ function AmbientBackground() {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden">
       <div
-        className="absolute inset-0 opacity-[0.04]"
-        style={{ backgroundImage: NOISE_BG }}
+        className="absolute inset-0 opacity-[0.05]"
+        style={{ backgroundImage: NOISE_BG, mixBlendMode: "multiply" }}
       />
       <div
-        className="absolute left-1/2 top-0 h-[600px] w-[900px] -translate-x-1/2 rounded-full opacity-30 blur-3xl"
+        className="absolute left-1/2 top-0 h-[600px] w-[900px] -translate-x-1/2 rounded-full opacity-20 blur-3xl"
         style={{
           background: `radial-gradient(circle, ${GLOW}, transparent 70%)`,
         }}
       />
       <motion.div
-        className="absolute -left-40 top-1/3 h-[420px] w-[420px] rounded-full opacity-20 blur-3xl"
+        className="absolute -left-40 top-1/3 h-[420px] w-[420px] rounded-full opacity-10 blur-3xl"
         style={{
           background: `radial-gradient(circle, ${PRIMARY}, transparent 70%)`,
         }}
@@ -176,19 +181,18 @@ function AmbientBackground() {
         transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
-        className="absolute -right-40 bottom-0 h-[420px] w-[420px] rounded-full opacity-20 blur-3xl"
+        className="absolute -right-40 bottom-0 h-[420px] w-[420px] rounded-full opacity-10 blur-3xl"
         style={{
           background: `radial-gradient(circle, ${SECONDARY}, transparent 70%)`,
         }}
         animate={{ y: [0, -40, 0] }}
         transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
       />
-      {/* vignette */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(120% 100% at 50% 0%, transparent 40%, rgba(9,9,9,0.9) 100%)",
+            "radial-gradient(120% 100% at 50% 0%, transparent 40%, rgba(244,240,232,0.9) 100%)",
         }}
       />
       {PARTICLES.map((p) => (
@@ -202,7 +206,7 @@ function AmbientBackground() {
             bottom: "-4%",
             background: PRIMARY,
           }}
-          animate={{ y: [-10, -900], opacity: [0, 0.5, 0] }}
+          animate={{ y: [-10, -900], opacity: [0, 0.4, 0] }}
           transition={{
             duration: p.duration,
             delay: p.delay,
@@ -247,6 +251,13 @@ function Counter({ value, suffix }) {
   );
 }
 
+/* ------------------------------------------------------------------ */
+/*  Shared horizontal rhythm — matches Navbar's `container` padding    */
+/*  scale (px-5 / sm:px-8 / lg:px-12 / xl:px-16) so every section's    */
+/*  left/right edges line up with the logo & nav links.                */
+/* ------------------------------------------------------------------ */
+const EDGE_PAD = "container mx-auto";
+
 function Hero() {
   const imageRef = useRef(null);
   const mx = useMotionValue(0);
@@ -265,7 +276,9 @@ function Hero() {
 
   return (
     <section className="relative flex min-h-screen flex-col lg:flex-row">
-      <div className="relative z-10 flex flex-col justify-center px-6 pb-16 pt-32 sm:px-10 sm:pt-36 lg:w-[48%] lg:px-16 lg:py-24 lg:pt-24">
+  <div
+    className={`relative z-10 flex flex-col justify-center ${EDGE_PAD} pb-16 pt-32 sm:pt-36 lg:w-[48%] lg:py-24 lg:pt-24`}
+  >
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -278,7 +291,7 @@ function Hero() {
           className="mt-5 font-serif text-4xl leading-[1.1] sm:text-5xl lg:text-[3.4rem]"
           style={{ color: HEADING }}
         >
-          {["WE TURN", "MOMENTS", "INTO MEMORIES"].map((line, i) => (
+          {["WE TURN", "TALENT INTO", "THE SPOTLIGHT"].map((line, i) => (
             <motion.span
               key={line}
               initial={{ opacity: 0, y: 26 }}
@@ -292,7 +305,7 @@ function Hero() {
             >
               {i === 2 ? (
                 <>
-                  INTO <span style={{ color: PRIMARY }}>MEMORIES</span>
+                  THE <span style={{ color: PRIMARY }}>SPOTLIGHT</span>
                 </>
               ) : (
                 line
@@ -309,13 +322,13 @@ function Hero() {
           style={{ color: PARA }}
         >
           <p>
-            Raj Entertainments is a full-service event management and
-            entertainment company dedicated to creating extraordinary
-            experiences that leave lasting impressions.
+            Raj Entertainments is a modeling and production house dedicated to
+            discovering talent and building the shows, shoots and campaigns
+            that put them on the map.
           </p>
           <p>
-            With creativity, precision and passion, we bring every celebration
-            to life with seamless execution and unforgettable memories.
+            From scouting and training models to producing full-scale shows,
+            we bring creativity, precision and passion to every frame.
           </p>
         </motion.div>
 
@@ -325,7 +338,7 @@ function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.65 }}
           whileHover="hover"
-          className="group mt-8 inline-flex w-fit items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em]"
+          className="group relative mt-8 inline-flex w-fit items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em]"
           style={{ color: HEADING }}
         >
           Discover Our Story
@@ -354,7 +367,7 @@ function Hero() {
               whileHover={{ y: -6 }}
               className="rounded-2xl p-5 backdrop-blur-sm transition-shadow duration-300"
               style={{
-                background: "rgba(20,20,20,0.5)",
+                background: CARD_TRANSLUCENT,
                 border: `1px solid ${BORDER}`,
               }}
               onMouseEnter={(e) =>
@@ -394,8 +407,8 @@ function Hero() {
           className="absolute inset-[-6%]"
         >
           <motion.img
-            src="/services/social-events.png"
-            alt="Luxury wedding stage with golden chandeliers and premium floral decorations"
+            src="/about-hero.png"
+            alt="Model on the runway during a Raj Entertainments production"
             initial={{ scale: 1.15 }}
             animate={{ scale: 1.3 }}
             transition={{
@@ -409,19 +422,13 @@ function Hero() {
         </motion.div>
 
         <div
-          className="absolute inset-0"
-          style={{
-            background: `linear-gradient(to top, ${BG}, rgba(9,9,9,0.25), rgba(9,9,9,0.1))`,
-          }}
-        />
-        <div
           className="absolute inset-0 hidden lg:block"
           style={{
-            background: `linear-gradient(to right, ${BG}, rgba(9,9,9,0.05), transparent)`,
+            background: `linear-gradient(to right, ${BG}, rgba(244,240,232,0.06), transparent)`,
           }}
         />
         <div
-          className="absolute inset-0 opacity-60"
+          className="absolute inset-0 opacity-50"
           style={{
             background: `radial-gradient(60% 50% at 65% 40%, ${GLOW}, transparent 70%)`,
           }}
@@ -438,7 +445,7 @@ function Hero() {
               bottom: "-5%",
               background: PRIMARY,
             }}
-            animate={{ y: [-20, -520], opacity: [0, 0.9, 0] }}
+            animate={{ y: [-20, -520], opacity: [0, 0.85, 0] }}
             transition={{
               duration: p.duration,
               delay: p.delay,
@@ -463,7 +470,7 @@ function Hero() {
 
 function OurImpact() {
   return (
-    <section className="px-6 py-16 sm:px-10">
+    <section className={`${EDGE_PAD} py-16`}>
       <motion.div
         initial="hidden"
         whileInView="show"
@@ -471,7 +478,7 @@ function OurImpact() {
         variants={reveal}
         className="mx-auto max-w-6xl overflow-hidden rounded-[30px] px-8 py-12 backdrop-blur-sm sm:px-12 sm:py-14"
         style={{
-          background: "rgba(20,20,20,0.5)",
+          background: CARD_TRANSLUCENT_STRONG,
           border: `1px solid ${BORDER}`,
         }}
       >
@@ -486,13 +493,13 @@ function OurImpact() {
               <span style={{ color: PRIMARY }}>OUR JOURNEY</span>
             </h2>
             <p className="mt-4 text-sm leading-relaxed" style={{ color: PARA }}>
-              Every event we create adds to our legacy of trust, creativity and
-              excellence.
+              Every show and shoot we produce adds to our legacy of talent,
+              creativity and trust.
             </p>
           </div>
 
           <div
-            className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-5 lg:divide-x"
+            className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4 lg:divide-x"
             style={{ borderColor: BORDER }}
           >
             {STATS.map((stat, i) => (
@@ -506,9 +513,9 @@ function OurImpact() {
                 className="flex flex-col items-center px-2 text-center transition-opacity duration-300 lg:px-4"
               >
                 <stat.icon
-                  size={20}
+                  size={28}
                   style={{ color: PRIMARY }}
-                  strokeWidth={1.6}
+                  strokeWidth={2}
                 />
                 <div className="mt-3">
                   <Counter value={stat.value} suffix={stat.suffix} />
@@ -530,7 +537,7 @@ function OurImpact() {
 
 function OurJourney() {
   return (
-    <section className="px-6 py-24 sm:px-10">
+    <section className={`${EDGE_PAD} py-24`}>
       <div className="mx-auto max-w-6xl">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,300px)_1fr] lg:gap-16">
           <motion.div
@@ -548,8 +555,9 @@ function OurJourney() {
               <span style={{ color: PRIMARY }}>GROWTH</span>
             </h2>
             <p className="mt-4 text-sm leading-relaxed" style={{ color: PARA }}>
-              From a small beginning to becoming a trusted name in the industry,
-              our journey has been driven by passion, innovation and trust.
+              From scouting our first model to running a full production
+              house, our journey has been driven by talent, innovation and
+              trust.
             </p>
           </motion.div>
 
@@ -586,7 +594,7 @@ function OurJourney() {
                       <motion.span
                         className="absolute inset-0 rounded-full"
                         style={{ background: PRIMARY }}
-                        animate={{ scale: [1, 2.2], opacity: [0.7, 0] }}
+                        animate={{ scale: [1, 2.2], opacity: [0.5, 0] }}
                         transition={{
                           duration: 2,
                           repeat: Infinity,
@@ -676,75 +684,126 @@ function OurJourney() {
 }
 
 function Team() {
+  const person = LEADERS[0];
+
   return (
     <section
-      className="px-6 py-24 sm:px-10"
+      className={`${EDGE_PAD} py-24`}
       style={{ borderTop: `1px solid ${BORDER}` }}
     >
-      <div className="mx-auto max-w-6xl text-center">
-        <Eyebrow center>The Minds Behind The Magic</Eyebrow>
-        <h2
-          className="mt-4 font-serif text-3xl sm:text-4xl"
-          style={{ color: HEADING }}
+      <div className="mx-auto max-w-6xl">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center"
         >
-          MEET OUR <span style={{ color: PRIMARY }}>LEADERS</span>
-        </h2>
+          <Eyebrow center>The Mind Behind The Magic</Eyebrow>
+          <h2
+            className="mt-4 font-serif text-3xl sm:text-4xl"
+            style={{ color: HEADING }}
+          >
+            MEET THE <span style={{ color: PRIMARY }}>FOUNDER</span>
+          </h2>
+        </motion.div>
 
-        <div className="mt-14 grid grid-cols-1 gap-6 text-left sm:grid-cols-2 lg:grid-cols-4">
-          {LEADERS.map((person, i) => (
-            <motion.div
-              key={person.name}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              whileHover={{ y: -8 }}
-              className="group overflow-hidden rounded-[20px] backdrop-blur-sm transition-shadow duration-300"
-              style={{
-                background: "rgba(20,20,20,0.6)",
-                border: `1px solid ${BORDER}`,
-              }}
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.boxShadow = `0 20px 50px -20px ${GLOW}`)
-              }
-              onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "none")}
-            >
-              <div className="relative h-64 overflow-hidden">
-                <img
-                  src={person.img}
-                  alt={person.name}
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    background: `linear-gradient(to top, ${CARD}, transparent 60%)`,
-                  }}
-                />
-              </div>
-              <div className="p-5">
-                <h3 className="font-serif text-lg" style={{ color: HEADING }}>
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="relative mt-14 overflow-hidden rounded-[30px]"
+          style={{
+            background: CARD_TRANSLUCENT_STRONG,
+            border: `1px solid ${BORDER}`,
+          }}
+        >
+          {/* oversized watermark initial — echoes the hero's "R" mark */}
+          <span
+            aria-hidden
+            className="pointer-events-none absolute -right-4 -top-14 hidden select-none font-serif leading-none sm:block"
+            style={{ color: BORDER, fontSize: "260px" }}
+          >
+            R
+          </span>
+
+          <div className="relative grid grid-cols-1 lg:grid-cols-[minmax(0,380px)_1fr]">
+            {/* Portrait */}
+            <div className="relative h-[420px] sm:h-[520px] lg:h-auto">
+              <img
+                src={person.img}
+                alt={person.name}
+                className="h-full w-full object-cover"
+              />
+              <div
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "linear-gradient(to top, rgba(10,9,8,0.6), transparent 55%)",
+                }}
+              />
+              {/* name shown over the image on mobile only */}
+              <div className="absolute inset-x-0 bottom-0 p-6 lg:hidden">
+                <p className="font-serif text-2xl text-white">
                   {person.name}
-                </h3>
+                </p>
                 <p
                   className="text-xs font-semibold uppercase tracking-widest"
+                  style={{ color: "#F0C9C6" }}
+                >
+                  {person.role}
+                </p>
+              </div>
+            </div>
+
+            {/* Bio */}
+            <div className="relative flex flex-col justify-center p-8 sm:p-12 lg:p-14">
+              <span
+                className="font-serif leading-none"
+                style={{ color: PRIMARY, opacity: 0.35, fontSize: "64px" }}
+              >
+                &ldquo;
+              </span>
+              <p
+                className="-mt-8 font-serif text-xl leading-snug sm:text-2xl"
+                style={{ color: HEADING }}
+              >
+                Every model has a story — my job is to make sure the world
+                sees it.
+              </p>
+
+              {/* name shown inline on desktop, next to the portrait */}
+              <div className="mt-8 hidden lg:block">
+                <p className="font-serif text-2xl" style={{ color: HEADING }}>
+                  {person.name}
+                </p>
+                <p
+                  className="mt-1 text-xs font-semibold uppercase tracking-widest"
                   style={{ color: PRIMARY }}
                 >
                   {person.role}
                 </p>
-                <p
-                  className="mt-3 text-xs leading-relaxed"
-                  style={{ color: PARA }}
-                >
-                  {person.desc}
-                </p>
-                <div className="mt-4 flex gap-3">
+              </div>
+
+              <p
+                className="mt-5 max-w-lg text-sm leading-relaxed"
+                style={{ color: PARA }}
+              >
+                {person.desc} With over a decade in modeling and production,{" "}
+                {person.name.split(" ")[0]} built Raj Entertainments from a
+                single scouting call into a full-scale house trusted across
+                Central India.
+              </p>
+
+              <div className="mt-8 flex items-center gap-6">
+                <div className="flex gap-3">
                   {[FaFacebook, FaInstagram, FaLinkedin].map((Icon, idx) => (
                     <Link
                       key={idx}
                       href="#"
                       aria-label={`${person.name} social link`}
-                      className="flex h-8 w-8 items-center justify-center rounded-full transition-colors duration-300"
+                      className="flex h-10 w-10 items-center justify-center rounded-full transition-colors duration-300"
                       style={{ border: `1px solid ${BORDER}`, color: PARA }}
                       onMouseEnter={(e) => {
                         e.currentTarget.style.color = PRIMARY;
@@ -755,14 +814,28 @@ function Team() {
                         e.currentTarget.style.borderColor = BORDER;
                       }}
                     >
-                      <Icon size={14} />
+                      <Icon size={16} />
                     </Link>
                   ))}
                 </div>
+
+                <div className="h-8 w-px" style={{ background: BORDER }} />
+
+                <div>
+                  <p className="font-serif text-xl" style={{ color: PRIMARY }}>
+                    10+
+                  </p>
+                  <p
+                    className="text-[10px] uppercase tracking-widest"
+                    style={{ color: PARA }}
+                  >
+                    Years Leading
+                  </p>
+                </div>
               </div>
-            </motion.div>
-          ))}
-        </div>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
@@ -770,7 +843,7 @@ function Team() {
 
 function OurPassion() {
   return (
-    <section className="px-6 py-16 sm:px-10">
+    <section className={`${EDGE_PAD} py-16`}>
       <motion.div
         initial="hidden"
         whileInView="show"
@@ -778,12 +851,12 @@ function OurPassion() {
         variants={reveal}
         className="relative mx-auto max-w-6xl overflow-hidden rounded-[30px]"
         style={{
-          background: `linear-gradient(135deg, #150707, ${BG})`,
+          background: `linear-gradient(135deg, #F6E7E5, ${BG})`,
           border: `1px solid ${BORDER}`,
         }}
       >
         <motion.div
-          className="absolute -left-1/4 top-0 h-[140%] w-1/2 rounded-full opacity-40 blur-3xl"
+          className="absolute -left-1/4 top-0 h-[140%] w-1/2 rounded-full opacity-25 blur-3xl"
           style={{
             background: `radial-gradient(circle, ${PRIMARY}, transparent 70%)`,
           }}
@@ -791,7 +864,7 @@ function OurPassion() {
           transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
-          className="absolute -right-1/4 bottom-0 h-[140%] w-1/2 rounded-full opacity-30 blur-3xl"
+          className="absolute -right-1/4 bottom-0 h-[140%] w-1/2 rounded-full opacity-15 blur-3xl"
           style={{
             background: `radial-gradient(circle, ${SECONDARY}, transparent 70%)`,
           }}
@@ -806,13 +879,12 @@ function OurPassion() {
               className="mt-4 font-serif text-3xl leading-tight sm:text-4xl"
               style={{ color: HEADING }}
             >
-              WE DON'T JUST PLAN EVENTS, WE{" "}
-              <span style={{ color: PRIMARY }}>CREATE EMOTIONS</span>
+              WE DON'T JUST BOOK TALENT, WE{" "}
+              <span style={{ color: PRIMARY }}>BUILD IT</span>
             </h2>
             <p className="mt-4 text-sm leading-relaxed" style={{ color: PARA }}>
-              Every celebration tells a story, and our mission is to transform
-              ideas into unforgettable experiences filled with emotion and
-              elegance.
+              Every model has a story, and our mission is to shape that story
+              into a career — one shoot, one show, one campaign at a time.
             </p>
 
             <div className="mt-8 space-y-5">
@@ -874,23 +946,22 @@ function OurPassion() {
 
             <div
               className="absolute inset-0"
-              style={{ background: "rgba(9,9,9,0.45)" }}
+              style={{ background: "rgba(10,9,8,0.35)" }}
             />
 
             <Link
               href="/gallery"
-              className="group absolute bottom-6 left-6 flex items-center gap-2 rounded-full px-5 py-2.5 text-xs font-semibold uppercase tracking-widest backdrop-blur-sm"
+              className="group absolute bottom-6 left-6 flex items-center gap-2 rounded-full px-5 py-2.5 text-xs font-semibold uppercase tracking-widest shadow-lg"
               style={{
-                background: "rgba(9,9,9,0.7)",
-                border: `1px solid ${BORDER}`,
-                color: HEADING,
+                background: PRIMARY,
+                color: "#F8F1E4",
               }}
             >
               Watch Our Story
               <ArrowRight
                 size={14}
                 className="transition-transform duration-300 group-hover:translate-x-1"
-                style={{ color: PRIMARY }}
+                style={{ color: "#F8F1E4" }}
               />
             </Link>
           </div>
@@ -904,12 +975,12 @@ export default function AboutPage() {
   return (
     <main className="relative overflow-hidden" style={{ background: BG }}>
       <AmbientBackground />
-      <div className="relative">
+      <div className="relative mx-auto max-w-[1440px]">
         <Navbar />
         <Hero />
         <OurImpact />
         <OurJourney />
-        {/* <Team /> */}
+        <Team />
         <OurPassion />
         <Footer />
       </div>
