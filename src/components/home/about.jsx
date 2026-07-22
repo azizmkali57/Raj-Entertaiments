@@ -1,7 +1,7 @@
 const STATS = [
-  { icon: "star", value: "10+", label: "Years of Experience" },
-  { icon: "users", value: "500+", label: "Events Organized" },
-  { icon: "heart", value: "100%", label: "Client Satisfaction" },
+  { icon: "star", value: "10+", label: "Years of Excellence" },
+  { icon: "users", value: "500+", label: "Models Trained" },
+  { icon: "award", value: "150+", label: "Successful Placements" },
 ];
 
 export default function About() {

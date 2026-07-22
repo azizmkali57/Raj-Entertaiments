@@ -7,7 +7,7 @@ const FOOTER_LINKS = [
   { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
   { label: "Gallery", href: "/gallery" },
-  { label: "Events", href: "#events" },
+  // { label: "Events", href: "#events" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -58,7 +58,7 @@ export default function Footer() {
               </Link>
               <div>
                 <h2 className="font-display text-xl font-bold leading-tight text-ink sm:text-2xl">
-                  Ready to Plan Your Next Event?
+                  Ready to Begin Your Modeling Journey?
                 </h2>
                 <p className="mt-1.5 max-w-xs text-sm text-ink/60">
                   Let&rsquo;s create something unforgettable together.

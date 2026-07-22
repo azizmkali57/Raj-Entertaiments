@@ -90,7 +90,7 @@ export default function Navbar() {
           href="/contact"
           className="hidden items-center gap-2.5 bg-crimson px-7 py-3.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-bone shadow-md shadow-crimson/20 transition-all duration-300 hover:bg-crimson/85 hover:shadow-lg hover:shadow-crimson/30 lg:inline-flex"
         >
-          Book an Event
+          LET'S CREAT
           <ArrowIcon />
         </Link>
 
@@ -161,7 +161,7 @@ export default function Navbar() {
             className="group relative mt-2 inline-flex items-center justify-center gap-3 overflow-hidden bg-crimson px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-bone shadow-lg shadow-crimson/30 transition-all duration-300 hover:shadow-xl hover:shadow-crimson/40"
           >
             <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/15 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
-            <span className="relative">Book an Event</span>
+            <span className="relative">LET'S CREAT</span>
             <ArrowIcon />
           </Link>
         </nav>

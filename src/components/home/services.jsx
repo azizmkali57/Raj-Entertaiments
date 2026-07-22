@@ -17,6 +17,13 @@ const SERVICES = [
       "Full-scale event production — concept, direction and execution handled end-to-end with precision.",
     image: "/services/production-section.png",
   },
+  {
+    icon: "casting",
+    title: "Casting",
+    description:
+      "Helping aspiring talent secure auditions and professional roles.",
+    image: "/services/production-section.png",
+  },
 ];
 
 export default function Services() {
@@ -36,7 +43,7 @@ export default function Services() {
           </div>
         </div>
 
-        <div className="mx-auto mt-16 grid max-w-4xl grid-cols-1 gap-8 sm:grid-cols-2">
+        <div className="mx-auto mt-16 grid max-w-7xl grid-cols-1 gap-8 sm:grid-cols-3">
           {SERVICES.map((service) => (
             <ServiceCard key={service.title} {...service} />
           ))}
