@@ -12,26 +12,26 @@ const STEPS = [
   {
     number: "01",
     icon: FiSearch,
-    title: "Discover",
-    description: "We understand your vision and requirements.",
+    title: "Apply",
+    description: "Submit your application and showcase your talent.",
   },
   {
     number: "02",
     icon: FiClipboard,
-    title: "Plan",
-    description: "We plan every detail with creativity & care.",
+    title: "Assessment",
+    description: "Our experts evaluate your potential through auditions and interviews.",
   },
   {
     number: "03",
     icon: FiTarget,
-    title: "Execute",
-    description: "Our expert team brings your event to life.",
+    title: "Training",
+    description: "Receive professional grooming, portfolio development, and industry guidance.",
   },
   {
     number: "04",
     icon: FiHeart,
-    title: "Celebrate",
-    description: "You enjoy the moments, we handle the rest.",
+    title: "Launch",
+    description: "Get connected with casting opportunities, fashion shows, and brand campaigns.",
   },
 ];
 

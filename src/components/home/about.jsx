@@ -34,10 +34,7 @@ export default function About() {
             </h2>
 
             <p className="mt-6 text-sm leading-relaxed text-ink/75 sm:text-base">
-              Raj Entertainments is a full-service event management and
-              entertainment company dedicated to creating magical
-              experiences. With creativity, flawless execution, and
-              attention to detail, we bring your dream events to life.
+              Raj Entertainments is a premier modeling and talent management agency dedicated to discovering, nurturing, and representing exceptional talent.
             </p>
 
             <a href="/about" className="btn-outline mt-8">

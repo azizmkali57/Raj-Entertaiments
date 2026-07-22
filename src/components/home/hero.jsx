@@ -105,7 +105,7 @@ export default function Hero() {
               href="/contact"
               className="btn-primary justify-center text-[11px] font-semibold uppercase tracking-[0.2em]"
             >
-              Book an Event
+              Register Now
               <ArrowIcon />
             </Link>
             <Link

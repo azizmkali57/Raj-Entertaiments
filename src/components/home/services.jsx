@@ -22,7 +22,7 @@ const SERVICES = [
     title: "Casting",
     description:
       "Helping aspiring talent secure auditions and professional roles.",
-    image: "/services/production-section.png",
+    image: "/gallery/casting.png",
   },
 ];
 
